@@ -1,4 +1,4 @@
-package info.rateme.rateme;
+package info.rateme.rateme.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
