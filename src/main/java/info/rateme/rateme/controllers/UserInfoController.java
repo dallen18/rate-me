@@ -21,7 +21,7 @@ public class UserInfoController {
 
         @PostMapping
         public String handleStudentForm(@ModelAttribute("user") UserInfo user, RedirectAttributes attributes) {
-            attributes.addAttribute("allInfo", user.getUserFirstName() + " " + user.getUserLastName() + " " + user.getUserName() + user.getEmail() + " " + user.getPassWord());
+            attributes.addAttribute("allInfo",  user.getUserFirstName() + "\n" + user.getUserLastName() + "\n" + user.getUserName() + "\n" + user.getEmail() + "\n" + user.getPassWord());
             System.out.println("First Name: " + user.getUserFirstName());
             System.out.println("Last Name: " + user.getUserLastName());
             System.out.println("User Name: " + user.getUserName());

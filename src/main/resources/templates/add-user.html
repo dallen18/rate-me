@@ -7,7 +7,7 @@
     <link th:href="@{style.css}" rel="stylesheet" />
 </head>
 <body>
-<form th:action="@{/user}" th:object="${user}" method = "post">
+<form class="forms" th:action="@{/user}" th:object="${user}" method = "post">
     <div>
         <label for="firstname">First Name: </label>
         <input id="firstname" type="text" th:field="*{userFirstName}"/>
