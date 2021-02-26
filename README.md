@@ -1,4 +1,4 @@
-# H1 Rate Me!
+# Rate Me!
 
 1. Idea: My project will be a rating website, that allows users to blog and critique recently
    watched movies and tv series.
@@ -13,7 +13,7 @@
    the lack of social interaction, I believe this is a great way to stay connected with others
    during this period and have discussions about common interests.
 3. Application: This web app allows users to add friends and view their page. Each user’s
-   page will contain movie, tv series, and documentary ratings with an option to write
+   page will contain a movie, tv series, and documentary ratings with an option to write
    about why they liked or disliked the production. The user also has the option of
    providing the service in which they viewed the film, allowing others to easily find and
    enjoy the product as well.
