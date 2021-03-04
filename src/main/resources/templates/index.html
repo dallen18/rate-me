@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link th:href="@{style.css}" rel="stylesheet" />
+<head th:insert="fragments/base :: headerFiles">
 </head>
 <body>
-    <h1>Rate Me!</h1>
+    <div th:replace="fragments/base :: header"></div>
 </body>
 </html>

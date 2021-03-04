@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Add User</title>
-    <link th:href="@{style.css}" rel="stylesheet" />
+<head th:insert="fragments/base :: headerFiles">
 </head>
 <body>
+<div th:replace="fragments/base :: header"></div>
+<br>
 <form class="forms" th:action="@{/user}" th:object="${user}" method = "post">
     <div>
         <label for="firstname">First Name: </label>
