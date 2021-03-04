@@ -1,39 +1,55 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
-<head th:insert="fragments/base :: headerFiles">
+<head>
+    <th:block th:insert="fragments/base :: headerFiles"></th:block>
+    <title>Login</title>
 </head>
 <body>
-<div th:replace="fragments/base :: header"></div>
-<br>
-<form class="forms" th:action="@{/user}" th:object="${user}" method = "post">
-    <div>
-        <label for="firstname">First Name: </label>
-        <input id="firstname" type="text" th:field="*{userFirstName}"/>
+    <div th:replace="fragments/base :: navigation"></div>
+    <div th:replace="fragments/base :: header"></div>
+    <br>
+<form class="mt-5" th:action="@{/user}" th:object="${user}" method = "post">
+    <div class="container-fluid">
+        <div class="row justify-content-center mb-2">
+            <div class="col-8 col-md-4">
+                <input class="form-control" id="firstname" type="text"
+                       th:field="*{userFirstName}" placeholder="First Name">
+            </div>
+        </div>
+        <div class="row justify-content-center mb-2">
+            <div class="col-8 col-md-4">
+                <input class="form-control" id="lastname" type="text"
+                       th:field="*{userLastName}" placeholder="Last Name">
+            </div>
+        </div>
+        <div class="row justify-content-center mb-2">
+            <div class="col-8 col-md-4">
+                <input class="form-control" id="username" type="text"
+                       th:field="*{userName}" placeholder="User Name">
+            </div>
+        </div>
+        <div class="row justify-content-center mb-2">
+            <div class="col-8 col-md-4">
+                <input class="form-control" id="email" type="text"
+                       th:field="*{email}" placeholder="Email">
+            </div>
+        </div>
+        <div class="row justify-content-center mb-2">
+            <div class="col-8 col-md-4">
+                <input class="form-control" id="password" type="text"
+                       th:field="*{passWord}" placeholder="Password">
+            </div>
+        </div>
+        <div class="row justify-content-center mb-2">
+            <div class="col-8 col-md-4">
+                <input class="btn btn-dark btn-outline-danger" type="submit" value="Submit"/>
+            </div>
+        </div>
     </div>
     <br>
-    <div>
-        <label for="lastname">Last Name: </label>
-        <input id="lastname" type="text" th:field="*{userLastName}"/>
-    </div>
-    <br>
-    <div>
-        <label for="username">User Name: </label>
-        <input id="username" type="text" th:field="*{userName}"/>
-    </div>
-    <br>
-    <div>
-        <label for="email">Email: </label>
-        <input id="email" type="email" th:field="*{email}"/>
-    </div>
-    <br>
-    <div>
-        <label for="password">Password: </label>
-        <input id="password" type="password" th:field="*{passWord}"/>
-    </div>
-    <br>
-    <input type="submit" value="Submit"/>
 </form>
 
 </body>
+<th:block th:insert="fragments/base :: scripts"></th:block>
 </html>

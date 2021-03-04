@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
-<head th:insert="fragments/base :: headerFiles">
+<head>
+    <th:block th:insert="fragments/base :: headerFiles"></th:block>
+    <title>Home</title>
 </head>
 <body>
+    <div th:replace="fragments/base :: navigation"></div>
     <div th:replace="fragments/base :: header"></div>
 </body>
+<th:block th:insert="fragments/base :: scripts"></th:block>
 </html>
