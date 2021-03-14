@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/users-view")
-public class ViewUsersInfoController {
+@RequestMapping("/view-users")
+public class ViewUsersController {
 
     private UserRepository userRepo;
 
     @Autowired
-    public ViewUsersInfoController(UserRepository userRepo){
+    public ViewUsersController(UserRepository userRepo){
         this.userRepo = userRepo;
     }
 
-        @GetMapping
-        public String showStudentName(Model model){
+    @GetMapping
+    public String showUsers(Model model){
         List<User> users = (List<User>) this.userRepo.findAll();
         model.addAttribute("users", users);
         return "display-users";
-        }
+    }
 }

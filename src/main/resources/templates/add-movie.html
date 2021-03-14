@@ -3,77 +3,78 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="fragments/base :: headerFiles"></th:block>
-    <title>Add User</title>
+    <title>Add Movie</title>
 </head>
 <body>
     <div th:replace="fragments/base :: navigation"></div>
     <div th:replace="fragments/base :: header"></div>
     <div th:replace="fragments/base :: footer"></div>
     <br>
-<form class="mt-5" th:action="@{/user}" th:object="${user}" method = "post">
+<form class="mt-5" th:action="@{/movie}" th:object="${movie}" method = "post">
     <div class="container-fluid">
+
         <div class="row justify-content-center">
             <div class="col-8 col-md-4">
-                <input class="form-control" id="firstname" type="text"
-                       th:field="*{userFirstName}" placeholder="First Name" required/>
+                <input class="form-control" id="movieName" type="text"
+                       th:field="*{movieName}" placeholder="Movie Name" required/>
             </div>
         </div>
         <div class="row justify-content-center mb-2">
             <div class="col-8 col-md-4">
-                <span class="text-danger small" th:if="${#fields.hasErrors('userFirstName')}"
-                th:errors="*{userFirstName}"></span>
+                <span class="text-danger small" th:if="${#fields.hasErrors('movieName')}"
+                th:errors="*{movieName}"></span>
             </div>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-8 col-md-4">
-                <input class="form-control" id="lastname" type="text"
-                       th:field="*{userLastName}" placeholder="Last Name" required/>
+                <input class="form-control" id="category" type="text"
+                       th:field="*{category}" placeholder="Category" required/>
             </div>
         </div>
         <div class="row justify-content-center mb-2">
             <div class="col-8 col-md-4">
-                <span class="text-danger small" th:if="${#fields.hasErrors('userLastName')}"
-                      th:errors="*{userLastName}"></span>
+                <span class="text-danger small" th:if="${#fields.hasErrors('category')}"
+                      th:errors="*{category}"></span>
             </div>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-8 col-md-4">
-                <input class="form-control" id="username" type="text"
-                       th:field="*{userName}" placeholder="User Name" required/>
+                <input class="form-control" id="episodes" type="number" min="1" max="1000"
+                       th:field="*{episodes}" placeholder="Episodes" required/>
             </div>
         </div>
         <div class="row justify-content-center mb-2">
             <div class="col-8 col-md-4">
-                <span class="text-danger small" th:if="${#fields.hasErrors('userName')}"
-                      th:errors="*{userName}"></span>
+                <span class="text-danger small" th:if="${#fields.hasErrors('episodes')}"
+                      th:errors="*{episodes}"></span>
             </div>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-8 col-md-4">
-                <input class="form-control" id="email" type="text"
-                       th:field="*{email}" placeholder="Email" required/>
+                <input class="form-control" id="rating" type="number" min="1" max="10"
+                       th:field="*{rating}" placeholder="Rating" required/>
             </div>
         </div>
         <div class="row justify-content-center mb-2">
             <div class="col-8 col-md-4">
-                    <span class="text-danger small" th:if="${#fields.hasErrors('email')}"
-                          th:errors="*{email}"></span>
+                <span class="text-danger small" th:if="${#fields.hasErrors('rating')}"
+                      th:errors="*{rating}"></span>
             </div>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-8 col-md-4">
-                <input class="form-control" id="password" type="password"
-                       th:field="*{passWord}" placeholder="Password" required/>
+                <textarea class="form-control" id="description"
+                          th:field="*{description}" placeholder="Description" required></textarea>
             </div>
         </div>
         <div class="row justify-content-center mb-2">
             <div class="col-8 col-md-4">
-                    <span class="text-danger small" th:if="${#fields.hasErrors('passWord')}"
-                          th:errors="*{passWord}"></span>
+                <span class="text-danger small" th:if="${#fields.hasErrors('description')}"
+                      th:errors="*{description}"></span>
             </div>
         </div>
 

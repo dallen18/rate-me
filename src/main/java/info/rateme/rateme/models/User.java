@@ -120,6 +120,7 @@ public class User {
         this.setModified(LocalDateTime.now());
     }
 
+    @Override
     public String toString() {return this.userFirstName + " " + this.userLastName;}
 }
 

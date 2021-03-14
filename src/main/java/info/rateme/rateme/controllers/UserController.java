@@ -15,26 +15,26 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/user")
-public class UserInfoController {
+public class UserController {
 
     private UserRepository userRepo;
 
     @Autowired
-    public UserInfoController(UserRepository userRepo){
+    public UserController(UserRepository userRepo){
         this.userRepo = userRepo;
     }
 
-        @GetMapping
-        public String showUserInfo(Model model) {
-            model.addAttribute("user", new User());
-            return "add-user";
-        }
+    @GetMapping
+    public String showUserInfo(Model model) {
+        model.addAttribute("user", new User());
+        return "add-user";
+    }
 
-        @PostMapping
-        public String handleStudentForm(@Valid @ModelAttribute("user") User user, Errors errors) {
-          if(errors.hasErrors())
-              return "add-user";
-          this.userRepo.save(user);
-          return "redirect:/users-view";
-        }
+    @PostMapping
+    public String handleStudentForm(@Valid @ModelAttribute("user") User user, Errors errors) {
+        if(errors.hasErrors())
+            return "add-user";
+        this.userRepo.save(user);
+        return "redirect:/view-users";
+    }
 }
