@@ -8,39 +8,75 @@
 <body>
     <div th:replace="fragments/base :: navigation"></div>
     <div th:replace="fragments/base :: header"></div>
+    <div th:replace="fragments/base :: footer"></div>
     <br>
 <form class="mt-5" th:action="@{/user}" th:object="${user}" method = "post">
     <div class="container-fluid">
-        <div class="row justify-content-center mb-2">
+        <div class="row justify-content-center">
             <div class="col-8 col-md-4">
                 <input class="form-control" id="firstname" type="text"
-                       th:field="*{userFirstName}" placeholder="First Name">
+                       th:field="*{userFirstName}" placeholder="First Name" required/>
             </div>
         </div>
         <div class="row justify-content-center mb-2">
+            <div class="col-8 col-md-4">
+                <span class="text-danger small" th:if="${#fields.hasErrors('userFirstName')}"
+                th:errors="*{userFirstName}"></span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
             <div class="col-8 col-md-4">
                 <input class="form-control" id="lastname" type="text"
-                       th:field="*{userLastName}" placeholder="Last Name">
+                       th:field="*{userLastName}" placeholder="Last Name" required/>
             </div>
         </div>
         <div class="row justify-content-center mb-2">
+            <div class="col-8 col-md-4">
+                <span class="text-danger small" th:if="${#fields.hasErrors('userLastName')}"
+                      th:errors="*{userLastName}"></span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
             <div class="col-8 col-md-4">
                 <input class="form-control" id="username" type="text"
-                       th:field="*{userName}" placeholder="User Name">
+                       th:field="*{userName}" placeholder="User Name" required/>
             </div>
         </div>
         <div class="row justify-content-center mb-2">
+            <div class="col-8 col-md-4">
+                <span class="text-danger small" th:if="${#fields.hasErrors('userName')}"
+                      th:errors="*{userName}"></span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
             <div class="col-8 col-md-4">
                 <input class="form-control" id="email" type="text"
-                       th:field="*{email}" placeholder="Email">
+                       th:field="*{email}" placeholder="Email" required/>
             </div>
         </div>
         <div class="row justify-content-center mb-2">
             <div class="col-8 col-md-4">
-                <input class="form-control" id="password" type="text"
-                       th:field="*{passWord}" placeholder="Password">
+                    <span class="text-danger small" th:if="${#fields.hasErrors('email')}"
+                          th:errors="*{email}"></span>
             </div>
         </div>
+
+        <div class="row justify-content-center">
+            <div class="col-8 col-md-4">
+                <input class="form-control" id="password" type="password"
+                       th:field="*{passWord}" placeholder="Password" required/>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-2">
+            <div class="col-8 col-md-4">
+                    <span class="text-danger small" th:if="${#fields.hasErrors('passWord')}"
+                          th:errors="*{passWord}"></span>
+            </div>
+        </div>
+
         <div class="row justify-content-center mb-2">
             <div class="col-8 col-md-4">
                 <input class="btn btn-dark btn-outline-danger" type="submit" value="Submit"/>
