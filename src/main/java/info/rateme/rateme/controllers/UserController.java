@@ -3,6 +3,7 @@ package info.rateme.rateme.controllers;
 import info.rateme.rateme.data.UserRepository;
 import info.rateme.rateme.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -34,7 +35,14 @@ public class UserController {
     public String handleStudentForm(@Valid @ModelAttribute("user") User user, Errors errors) {
         if(errors.hasErrors())
             return "add-user";
-        this.userRepo.save(user);
+
+        try {
+            this.userRepo.save(user);
+        } catch (DataIntegrityViolationException e) {
+            errors.rejectValue("email", "invalidEmail", "Email not available. Please enter another email address");
+            return "add-user";
+        }
+
         return "redirect:/view-users";
     }
 }

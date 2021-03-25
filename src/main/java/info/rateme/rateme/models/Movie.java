@@ -10,7 +10,7 @@ public class Movie{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    private Long id;
 
     @NotBlank(message = "Must enter movie name")
     @Size(min = 2,message = "Movie name must be 2 or more characters")
@@ -44,11 +44,11 @@ public class Movie{
     public Movie() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

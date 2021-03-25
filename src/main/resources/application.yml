@@ -11,5 +11,5 @@ spring:
     url: jdbc:mysql://sql5.freesqldatabase.com/${DB_NAME}
     username: ${USERNAME}
     password: ${PASSWORD}
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     platform: mysql

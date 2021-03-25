@@ -2,6 +2,7 @@
 package info.rateme.rateme.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
@@ -29,8 +30,9 @@ public class User {
     @Size(min = 4,message = "Username must be 4 or more characters")
     private String userName;
 
+    @Column(unique = true)
     @NotBlank(message = "Must enter full email address")
-    @Size(min = 6,message = "Must be real email")
+    @Email(message = "Must be real email")
     private String email;
 
     private LocalDateTime modified;
@@ -58,6 +60,10 @@ public class User {
     public User(String userName, String passWord) {
         this.userName = userName;
         this.passWord = passWord;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public LocalDateTime getCreated() { return created; }
@@ -99,7 +105,6 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
 
     public String getPassWord() {
         return passWord;
