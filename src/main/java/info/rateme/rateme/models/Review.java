@@ -1,5 +1,7 @@
 package info.rateme.rateme.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -19,6 +21,11 @@ public class Review {
     @Size(min = 6,message = "Must have at least 6 characters")
     private String description;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "movie_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Movie movie;
+
     private LocalDateTime modified;
     private LocalDateTime created;
 
@@ -32,10 +39,6 @@ public class Review {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getRating() {
@@ -68,6 +71,14 @@ public class Review {
 
     public void setCreated(LocalDateTime created) {
         this.created = created;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 
     @PrePersist

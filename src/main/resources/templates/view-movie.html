@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="fragments/base :: headerFiles"></th:block>
+    <title>View Movie</title>
+</head>
+<body>
+    <div th:replace="fragments/base :: navigation"></div>
+    <div th:replace="fragments/base :: header"></div>
+
+    <div class="container-fluid mt-3">
+        <div class="row justify-content-center">
+            <h3 class="text-center col-12">View/Edit Movie</h3>
+        </div>
+    </div>
+
+
+    <form class="mt-3 mb-3" th:action="@{/movie/edit/{id}(id=${movie.id})}" th:object="${movie}" method = "post">
+        <div class="container-fluid">
+
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-4">
+                    <select class="form-control" id="category" th:field="*{category}" onchange="updateEpisodes(this.value, 'episodes')" required>
+                        <option th:value="Documentary" th:text="Documentary" th:selected="(${movie.category} == *{category})"></option>
+                        <option th:value="'TV Show'" th:text="'TV Show'" th:selected="${movie.category} == *{category}"></option>
+                        <option th:value="Web-series" th:text="Web-series" th:selected="${movie.category} == *{category}"></option>
+                        <option th:value="Movie" th:text="Movie" th:selected="${movie.category} == *{category}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-2">
+                <div class="col-8 col-md-4">
+                <span class="text-danger small" th:if="${#fields.hasErrors('category')}"
+                      th:errors="*{category}"></span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-4">
+                    <input class="form-control" id="movieName" type="text"
+                           th:field="*{movieName}" placeholder="Movie Name" required/>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-2">
+                <div class="col-8 col-md-4">
+                <span class="text-danger small" th:if="${#fields.hasErrors('movieName')}"
+                      th:errors="*{movieName}"></span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-4">
+                    <select class="form-control" id="genre" th:field="*{genre}" required>
+                        <option th:value="Action" th:text="Action"></option>
+                        <option th:value="Horror" th:text="Horror"></option>
+                        <option th:value="Thriller" th:text="Thriller"></option>
+                        <option th:value="Adventure" th:text="Adventure"></option>
+                        <option th:value="Drama" th:text="Drama"></option>
+                        <option th:value="Romance" th:text="Romance"></option>
+                        <option th:value="Comedy" th:text="Comedy"></option>
+                        <option th:value="'Science Fiction'" th:text="'Science Fiction'"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-2">
+                <div class="col-8 col-md-4">
+                <span class="text-danger small" th:if="${#fields.hasErrors('genre')}"
+                      th:errors="*{genre}"></span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-4">
+                    <input class="form-control" id="episodes" type="number" min="1" max="1000"
+                           th:field="*{episodes}" placeholder="Episodes" required/>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-2">
+                <div class="col-8 col-md-4">
+                <span class="text-danger small" th:if="${#fields.hasErrors('episodes')}"
+                      th:errors="*{episodes}"></span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-2">
+                <div class="col-8 col-md-4">
+                    <input class="btn btn-dark btn-outline-danger" type="submit" value="Submit"/>
+                    <a class="ml-2 btn btn-light btn-outline-dark" th:href="@{/display-movies}">Cancel</a>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <span th:text="'Date created: ' + ${#temporals.format(movie.created, 'dd-MM-yyyy HH:mm')}"></span><br>
+                    <span th:text="'Date modified: ' + ${#temporals.format(movie.modified, 'dd-MM-yyyy HH:mm')}"></span>
+                </div>
+            </div>
+        </div>
+        <br>
+    </form>
+    <div th:replace="fragments/base :: footer"></div>
+</body>
+<th:block th:insert="fragments/base :: scripts"></th:block>
+</html>

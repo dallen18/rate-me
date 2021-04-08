@@ -14,3 +14,11 @@
 .card{
     z-index: 0;
 }
+
+body {
+    margin-bottom: 3.5em;
+}
+
+.my_pointer{
+    cursor: pointer;
+}

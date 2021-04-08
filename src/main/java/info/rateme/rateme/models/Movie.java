@@ -1,11 +1,15 @@
 package info.rateme.rateme.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
 public class Movie {
 
     @Id
@@ -27,6 +31,29 @@ public class Movie {
     @NotBlank(message = "Must enter episode amount")
     private String episodes;
 
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private Set<Review> reviews = new HashSet<>();
+
+    private LocalDateTime modified;
+
+    public LocalDateTime getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDateTime modified) {
+        this.modified = modified;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    private LocalDateTime created;
+
     public Movie() {
     }
 
@@ -38,6 +65,10 @@ public class Movie {
         this.category = category;
         this.genre = genre;
         this.episodes = episodes;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getMovieName() {
@@ -70,6 +101,14 @@ public class Movie {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
     }
 
     @Override

@@ -21,46 +21,6 @@
 
             <div class="row justify-content-center">
                 <div class="col-8 col-md-4">
-                    <input class="form-control" id="movieName" type="text"
-                           th:field="*{movieName}" placeholder="Movie Name" required/>
-                </div>
-            </div>
-            <div class="row justify-content-center mb-2">
-                <div class="col-8 col-md-4">
-                <span class="text-danger small" th:if="${#fields.hasErrors('movieName')}"
-                      th:errors="*{movieName}"></span>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-8 col-md-4">
-                    <input class="form-control" id="category" type="text"
-                           th:field="*{category}" placeholder="Category" required/>
-                </div>
-            </div>
-            <div class="row justify-content-center mb-2">
-                <div class="col-8 col-md-4">
-                <span class="text-danger small" th:if="${#fields.hasErrors('category')}"
-                      th:errors="*{category}"></span>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-8 col-md-4">
-                    <input class="form-control" id="episodes" type="number" min="1" max="1000"
-                           th:field="*{episodes}" placeholder="Episodes" required/>
-                </div>
-            </div>
-
-            <div class="row justify-content-center mb-2">
-                <div class="col-8 col-md-4">
-                <span class="text-danger small" th:if="${#fields.hasErrors('episodes')}"
-                      th:errors="*{episodes}"></span>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-8 col-md-4">
                     <input class="form-control" id="rating" type="number" min="1" max="10"
                            th:field="*{rating}" placeholder="Rating" required/>
                 </div>

@@ -1,6 +1,8 @@
 package info.rateme.rateme.controllers;
 
+import info.rateme.rateme.data.MovieRepository;
 import info.rateme.rateme.data.ReviewRepository;
+import info.rateme.rateme.models.Movie;
 import info.rateme.rateme.models.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,21 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/view-reviews")
-public class ViewReviewsController {
+@RequestMapping("/display-movies")
+public class ViewMoviesController {
 
-    private ReviewRepository reviewRepo;
+    private MovieRepository movieRepo;
 
     @Autowired
-    public ViewReviewsController(ReviewRepository reviewRepo){
-        this.reviewRepo = reviewRepo;
+    public ViewMoviesController(MovieRepository movieRepo){
+        this.movieRepo = movieRepo;
     }
 
     @GetMapping
-    public String showReviews(Model model){
-        List<Review> reviews = (List<Review>) this.reviewRepo.findAll();
-        model.addAttribute("reviews", reviews);
-        return "display-reviews";
+    public String showMovies(Model model){
+        List<Movie> movies = (List<Movie>) this.movieRepo.findAll();
+        model.addAttribute("movies", movies);
+        return "display-movies";
     }
 
 }

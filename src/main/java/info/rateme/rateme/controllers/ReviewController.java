@@ -23,7 +23,7 @@ public class ReviewController {
     }
 
     @GetMapping
-    public String showReviewInfo(Model model) {
+    public String sendAddReviewForm(Model model) {
         model.addAttribute("review", new Review());
         return "add-review";
     }
@@ -32,7 +32,7 @@ public class ReviewController {
     public String showReview(@PathVariable Long id, Model model){
         Review review = this.reviewRepo.findById(id).get();
         model.addAttribute("review", review);
-        return "view-reviews";
+        return "view-review";
     }
 
     @PostMapping
@@ -45,13 +45,13 @@ public class ReviewController {
                   return "add-review";*/
 
       this.reviewRepo.save(review);
-      return "redirect:/view-reviews";
+      return "redirect:/display-reviews";
     }
 
     @PostMapping("/edit/{id}")
     public String handleEditReviewForm(@PathVariable Long id, @Valid @ModelAttribute("review") Review review, Errors errors) {
         if(errors.hasErrors())
-            return "view-reviews";
+            return "view-review";
 
         try {
             Review originalReview = this.reviewRepo.findById(id).get();
@@ -64,7 +64,7 @@ public class ReviewController {
             this.reviewRepo.save(review);
         } catch (DataIntegrityViolationException e){
             errors.rejectValue("review", "invalidReview", "Review already made");
-            return "view-reviews";
+            return "view-review";
         }
 
         return "redirect:/view";
@@ -82,7 +82,7 @@ public class ReviewController {
     @GetMapping("/delete/{id}")
     public String deleteReview(@PathVariable Long id){
         this.reviewRepo.deleteById(id);
-        return "redirect:/view-reviews";
+        return "redirect:/display-reviews";
     }
 
 }

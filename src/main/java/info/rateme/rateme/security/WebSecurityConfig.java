@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/view-users/**", "/review/**", "/view-reviews/**").authenticated()
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/review",true).permitAll()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/movie/add",true).permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout").permitAll();

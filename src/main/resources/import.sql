@@ -1,0 +1,5 @@
+INSERT INTO movie(id, movie_name, category, genre, episodes) VALUES(15001, 'Toy Story','movie', 'adventure', '1' )
+INSERT INTO movie(id, movie_name, category, genre, episodes) VALUES(15002, 'Mulan','movie', 'adventure', '1' )
+INSERT INTO movie(id, movie_name, category, genre, episodes) VALUES(15003, 'Inception','movie', 'adventure', '1' )
+INSERT INTO movie(id, movie_name, category, genre, episodes) VALUES(15004, 'Cars','movie', 'adventure', '1' )
+INSERT INTO movie(id, movie_name, category, genre, episodes) VALUES(15005, 'Jurassic Park','movie', 'adventure', '1' )
