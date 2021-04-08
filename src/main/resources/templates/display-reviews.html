@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="fragments/base :: headerFiles">
+    </th:block>
+    <title>All Reviews</title>
+<body>
+    <div th:replace="fragments/base :: navigation"></div>
+    <div th:replace="fragments/base :: header"></div>
+    <div th:replace="fragments/base :: footer"></div>
+
+    <div class="container-fluid mt-5">
+        <div th:each="review: ${reviews}">
+            <div class="row justify-content-center mb-3">
+                <div class="col-2 col-md-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title d-inline" th:text="${review.movieName}"></h5>
+                        <a th:href="@{/review/view/{id}(id=${review.id})}" class="ml-3 text-dark"><i class="fas fa-eye"></i></a>
+                        <a data-toggle="modal" th:data-target="'#reviewModal' + ${review.id}" class="ml-3 text-danger"><i class="fas fa-trash-alt"></i></a><br>
+                    </div>
+
+                    <div class="modal fade" th:id="'reviewModal' + ${review.id}" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content"><div class="modal-content">
+                                <div class="modal-header">
+                                    <h5>Are you sure you want to delete this?</h5>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <a class="btn btn-primary" role="button" th:href="@{/review/delete/{id}(id=${review.id})}">Yes</a>
+                                    <a class="btn btn-dark" th:href="@{/view-reviews}" type="button">No</a>
+                                </div>
+
+                            </div>
+                            <span th:text="${review.category}"></span><br>
+                            <span th:text="${review.episodes}"></span><br>
+                            <span th:text="${review.genre}"></span><br>
+                            <span th:text="${review.description}"></span><br>
+                            <span th:text="${review.rating}"></span><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<th:block th:insert="fragments/base :: scripts"></th:block>
+</html>

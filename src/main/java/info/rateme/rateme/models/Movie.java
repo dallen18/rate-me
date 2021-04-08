@@ -1,55 +1,43 @@
 package info.rateme.rateme.models;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
 
-@Entity
-public class Movie{
+public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @NotBlank(message = "Must enter movie name")
-    @Size(min = 2,message = "Movie name must be 2 or more characters")
+    @Size(min = 2,message = "Review name must be 2 or more characters")
     private String movieName;
 
     @NotBlank(message = "Must enter category")
     @Size(min = 2,message = "Category must be 2 or more characters")
     private String category;
 
+    @NotBlank(message = "Must enter genre")
+    @Size(min = 2,message = "Genre must be 2 or more characters")
+    private String genre;
+
     @NotBlank(message = "Must enter episode amount")
     private String episodes;
-
-    @NotBlank(message = "Must enter rating for movie")
-    private String rating;
-
-    @NotBlank(message = "Must enter description of movie")
-    @Size(min = 6,message = "Must have at least 6 characters")
-    private String description;
-
-    private LocalDateTime modified;
-    private LocalDateTime created;
-
-    public Movie(String movieName, String category, String episodes, String rating, String description) {
-        this.movieName = movieName;
-        this.category = category;
-        this.episodes = episodes;
-        this.rating = rating;
-        this.description = description;
-    }
 
     public Movie() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Movie(@NotBlank(message = "Must enter movie name") @Size(min = 2, message = "Review name must be 2 or more characters") String movieName,
+                 @NotBlank(message = "Must enter category") @Size(min = 2, message = "Category must be 2 or more characters") String category,
+                 @NotBlank(message = "Must enter genre") @Size(min = 2, message = "Genre must be 2 or more characters") String genre,
+                 @NotBlank(message = "Must enter episode amount") String episodes) {
+        this.movieName = movieName;
+        this.category = category;
+        this.genre = genre;
+        this.episodes = episodes;
     }
 
     public String getMovieName() {
@@ -76,47 +64,12 @@ public class Movie{
         this.episodes = episodes;
     }
 
-    public String getRating() {
-        return rating;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDateTime getModified() {
-        return modified;
-    }
-
-    public void setModified(LocalDateTime modified) {
-        this.modified = modified;
-    }
-
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
-    @PrePersist
-    public void onCreate(){
-        this.setCreated(LocalDateTime.now());
-        this.setModified(LocalDateTime.now());
-    }
-
-    @PreUpdate
-    public void onUpdate(){
-        this.setModified(LocalDateTime.now());
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     @Override
