@@ -111,6 +111,17 @@ public class Movie {
         this.reviews = reviews;
     }
 
+    @PrePersist
+    public void onCreate(){
+        this.setCreated(LocalDateTime.now());
+        this.setModified(LocalDateTime.now());
+    }
+
+    @PreUpdate
+    public void onUpdate(){
+        this.setModified(LocalDateTime.now());
+    }
+
     @Override
     public String toString() {
         return this.movieName;

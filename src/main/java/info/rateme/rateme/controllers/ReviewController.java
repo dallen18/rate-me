@@ -39,11 +39,6 @@ public class ReviewController {
     public String handleReviewForm(@Valid @ModelAttribute("review") Review review, Errors errors) {
       if(errors.hasErrors())
           return "add-review";
-
-         /* if(review.getCategory().equals("MovieController"))
-              if(! review.getEpisodes().equals("1"))
-                  return "add-review";*/
-
       this.reviewRepo.save(review);
       return "redirect:/display-reviews";
     }
@@ -56,11 +51,6 @@ public class ReviewController {
         try {
             Review originalReview = this.reviewRepo.findById(id).get();
             updatedOriginalReview(originalReview, review);
-
-           /* if(review.getCategory().equals("MovieController"))
-                if(! review.getEpisodes().equals("1"))
-                    return "add-review";*/
-
             this.reviewRepo.save(review);
         } catch (DataIntegrityViolationException e){
             errors.rejectValue("review", "invalidReview", "Review already made");
@@ -76,7 +66,6 @@ public class ReviewController {
         original.setEpisodes(update.getEpisodes());*/
         original.setDescription(update.getDescription());
         original.setRating(update.getRating());
-
     }
 
     @GetMapping("/delete/{id}")

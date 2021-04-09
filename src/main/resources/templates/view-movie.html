@@ -16,16 +16,16 @@
     </div>
 
 
-    <form class="mt-3 mb-3" th:action="@{/movie/edit/{id}(id=${movie.id})}" th:object="${movie}" method = "post">
+    <form class="mt-3 mb-3" th:action="@{/movie/edit/{id}(id=${movie.id})}" th:object="${movie}" method="post">
         <div class="container-fluid">
 
             <div class="row justify-content-center">
                 <div class="col-8 col-md-4">
                     <select class="form-control" id="category" th:field="*{category}" onchange="updateEpisodes(this.value, 'episodes')" required>
-                        <option th:value="Documentary" th:text="Documentary" th:selected="(${movie.category} == *{category})"></option>
-                        <option th:value="'TV Show'" th:text="'TV Show'" th:selected="${movie.category} == *{category}"></option>
-                        <option th:value="Web-series" th:text="Web-series" th:selected="${movie.category} == *{category}"></option>
-                        <option th:value="Movie" th:text="Movie" th:selected="${movie.category} == *{category}"></option>
+                        <option th:value="Documentary" th:text="Documentary"></option>
+                        <option th:value="'TV Show'" th:text="'TV Show'"></option>
+                        <option th:value="Web-series" th:text="Web-series"></option>
+                        <option th:value="Movie" th:text="Movie"></option>
                     </select>
                 </div>
             </div>
