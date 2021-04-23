@@ -22,3 +22,7 @@ body {
 .my_pointer{
     cursor: pointer;
 }
+
+input, select{
+    text-align-last: center;
+}

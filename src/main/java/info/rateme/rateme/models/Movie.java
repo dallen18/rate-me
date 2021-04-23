@@ -7,10 +7,15 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 public class Movie {
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -31,26 +36,10 @@ public class Movie {
     @NotBlank(message = "Must enter episode amount")
     private String episodes;
 
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
-    private Set<Review> reviews = new HashSet<>();
+    @OneToMany(mappedBy = "movie")
+    private List<Review> reviews;
 
     private LocalDateTime modified;
-
-    public LocalDateTime getModified() {
-        return modified;
-    }
-
-    public void setModified(LocalDateTime modified) {
-        this.modified = modified;
-    }
-
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
 
     private LocalDateTime created;
 
@@ -60,11 +49,12 @@ public class Movie {
     public Movie(@NotBlank(message = "Must enter movie name") @Size(min = 2, message = "Review name must be 2 or more characters") String movieName,
                  @NotBlank(message = "Must enter category") @Size(min = 2, message = "Category must be 2 or more characters") String category,
                  @NotBlank(message = "Must enter genre") @Size(min = 2, message = "Genre must be 2 or more characters") String genre,
-                 @NotBlank(message = "Must enter episode amount") String episodes) {
+                 @NotBlank(message = "Must enter episode amount") String episodes, Long id) {
         this.movieName = movieName;
         this.category = category;
         this.genre = genre;
         this.episodes = episodes;
+        this.id = id;
     }
 
     public Long getId() {
@@ -87,14 +77,6 @@ public class Movie {
         this.category = category;
     }
 
-    public String getEpisodes() {
-        return episodes;
-    }
-
-    public void setEpisodes(String episodes) {
-        this.episodes = episodes;
-    }
-
     public String getGenre() {
         return genre;
     }
@@ -103,12 +85,36 @@ public class Movie {
         this.genre = genre;
     }
 
-    public Set<Review> getReviews() {
+    public String getEpisodes() {
+        return episodes;
+    }
+
+    public void setEpisodes(String episodes) {
+        this.episodes = episodes;
+    }
+
+    public List<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(Set<Review> reviews) {
+    public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public LocalDateTime getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDateTime modified) {
+        this.modified = modified;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
     @PrePersist
@@ -126,4 +132,5 @@ public class Movie {
     public String toString() {
         return this.movieName;
     }
+
 }

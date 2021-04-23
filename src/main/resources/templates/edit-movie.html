@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en"
-    xmlns:th="http://www.thymeleaf.org">
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <th:block th:insert="fragments/base :: headerFiles"></th:block>
-    <title>View Movie</title>
+    <title>Edit Movie</title>
 </head>
 <body>
     <div th:replace="fragments/base :: navigation"></div>
@@ -11,13 +12,14 @@
 
     <div class="container-fluid mt-3">
         <div class="row justify-content-center">
-            <h3 class="text-center col-12">View/Edit Movie</h3>
+            <h3 class="text-center col-12" sec:authorize="hasRole('ADMIN')">Edit Movie</h3>
+            <h3 class="text-center col-12" sec:authorize="hasRole('USER')">View Movie Details</h3>
         </div>
     </div>
 
 
     <form class="mt-3 mb-3" th:action="@{/movie/edit/{id}(id=${movie.id})}" th:object="${movie}" method="post">
-        <div class="container-fluid">
+        <div class="container-fluid" sec:authorize="hasRole('ADMIN')">
 
             <div class="row justify-content-center">
                 <div class="col-8 col-md-4">
@@ -89,16 +91,38 @@
                     <a class="ml-2 btn btn-light btn-outline-dark" th:href="@{/display-movies}">Cancel</a>
                 </div>
             </div>
+        </div>
 
-            <div class="row justify-content-center mb-3">
-                <div class="col-8 col-md-3">
-                    <span th:text="'Date created: ' + ${#temporals.format(movie.created, 'dd-MM-yyyy HH:mm')}"></span><br>
-                    <span th:text="'Date modified: ' + ${#temporals.format(movie.modified, 'dd-MM-yyyy HH:mm')}"></span>
+        <div class="container-fluid" sec:authorize="hasRole('USER')">
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-4">
+                    <input readonly class="form-control-plaintext" type="text" th:value="'Category: ' + *{category}"/>
+                    <input readonly class="form-control-plaintext" type="text" th:value="'Movie Name: ' + *{movieName}"/>
+                    <input readonly class="form-control-plaintext" type="text" th:value="'Genre: ' + *{genre}"/>
+                    <input readonly class="form-control-plaintext" type="text" th:value="'Episodes: ' + *{episodes}"/>
                 </div>
             </div>
         </div>
-        <br>
+
+        <div class="container-fluid" sec:authorize="hasRole('USER')">
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-4">
+                    <input readonly class="form-control-plaintext" type="text" th:value="'Date created: ' + ${#temporals.format(movie.created, 'dd-MM-yyyy HH:mm')}"/>
+                    <input readonly class="form-control-plaintext" type="text" th:value="'Date modified: ' + ${#temporals.format(movie.modified, 'dd-MM-yyyy HH:mm')}"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid" sec:authorize="hasRole('USER')">
+            <div class="row justify-content-center">
+                <div>
+                    <a th:href="@{/review/add/{movie_id}(movie_id=${movie.id})}" class="btn btn-dark btn-outline-danger">Add Review</a>
+                </div>
+            </div>
+        </div>
+
     </form>
+
     <div th:replace="fragments/base :: footer"></div>
 </body>
 <th:block th:insert="fragments/base :: scripts"></th:block>

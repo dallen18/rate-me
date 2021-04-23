@@ -22,12 +22,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/","/user/**").permitAll()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/view-users/**", "/review/**", "/view-reviews/**").authenticated()
+                .antMatchers("/user/**").anonymous()
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/movie/add",true).permitAll()
+                .authorizeRequests()
+                .antMatchers( "/view-users/**").hasRole("ADMIN")
+                .and()
+                .authorizeRequests()
+                .antMatchers("/movie/**", "/review/**","/display-movies/**","/display-reviews/**").hasAnyRole("ADMIN", "USER")
+                .and()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/display-movies",true).permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout").permitAll();
@@ -38,7 +44,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("user")
                 .password(passwordEncoder().encode("password"))
-                .roles("USER");
+                .roles("USER")
+                .and()
+                .withUser("admin")
+                .password("admin")
+                .password(passwordEncoder().encode("password"))
+                .roles("ADMIN");
     }
 
 

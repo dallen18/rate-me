@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <th:block th:fragment="headerFiles">
         <meta charset="UTF-8">
@@ -32,22 +33,33 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item" th:classappend="${#request.getServletPath() == '/' ? 'active' : ''}">
-                <a class="nav-link" th:href="@{/}">Home</a></li>
-            <li class="nav-item" th:classappend="${#request.getServletPath() == '/user' ? 'active' : ''}">
-                <a class="nav-link" th:href="@{/user}">Sign Up</a></li>
-            <li class="nav-item" th:classappend="${#request.getServletPath() == '/user' ? 'active' : ''}">
-                <a class="nav-link" th:href="@{/view-users}">View Users</a></li>
-            <li class="nav-item" th:classappend="${#request.getServletPath() == '/user' ? 'active' : ''}">
-                <a class="nav-link" th:href="@{/movie/add}">Add Movie</a></li>
-<!--
-            <li class="nav-item" th:classappend="${#request.getServletPath() == '/user' ? 'active' : ''}">
-                <a class="nav-link" th:href="@{/review}">Add Review</a></li>
--->
-            <li class="nav-item" th:classappend="${#request.getServletPath() == '/user' ? 'active' : ''}">
-                <a class="nav-link" th:href="@{/view-reviews}">View Reviews</a></li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/' ? 'active' : ''}"
+                sec:authorize="!isAuthenticated()">
+                <a class="nav-link" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/user' ? 'active' : ''}"
+                sec:authorize="!isAuthenticated()">
+                <a class="nav-link" th:href="@{/user}">Sign Up</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/user' ? 'active' : ''}"
+                sec:authorize="hasRole('ADMIN')">
+                <a class="nav-link" th:href="@{/view-users}">View Users</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/user' ? 'active' : ''}
+                "sec:authorize="isAuthenticated()">
+                <a class="nav-link" th:href="@{/movie/add}">Add Movie</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/user' ? 'active' : ''}"
+                sec:authorize="isAuthenticated()">
+                <a class="nav-link" th:href="@{/display-movies}">View Movies</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/user' ? 'active' : ''}"
+                sec:authorize="isAuthenticated()">
+                <a class="nav-link" th:href="@{/display-reviews}">View Reviews</a>
+            </li>
         </ul>
-        <a th:href="@{/logout}" class="btn btn-light btn-outline-dark">Logout</a>
+        <a th:href="@{/logout}" class="btn btn-light btn-outline-dark"
+           sec:authorize="isAuthenticated()">Logout</a>
     </div>
 </nav>
 

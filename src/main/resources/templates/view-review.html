@@ -11,7 +11,7 @@
 
     <div class="container-fluid mt-3">
         <div class="row justify-content-center">
-            <h3 class="text-center col-12">View/Edit Review</h3>
+            <h3 class="text-center col-12">View Movie Reviews</h3>
         </div>
     </div>
 
@@ -21,14 +21,29 @@
 
             <div class="row justify-content-center">
                 <div class="col-8 col-md-4">
-                    <input class="form-control" id="rating" type="number" min="1" max="10"
-                           th:field="*{rating}" placeholder="Rating" required/>
+                    <h5 class="text-center" th:text="${review.movie}"></h5>
                 </div>
             </div>
-            <div class="row justify-content-center mb-2">
+            <div class="row justify-content-center">
                 <div class="col-8 col-md-4">
-                <span class="text-danger small" th:if="${#fields.hasErrors('rating')}"
-                      th:errors="*{rating}"></span>
+                    <h5 class="text-center" th:text="${review.movie.category}"></h5>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-4">
+                    <h5 class="text-center" th:text="${review.movie.genre}"></h5>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-4">
+                    <h5 class="text-center" th:text="${review.movie.episodes}"></h5>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-4">
+                    <input class="form-control" id="rating"
+                          th:field="*{rating}" placeholder="rating" readonly/>
                 </div>
             </div>
 
@@ -48,7 +63,7 @@
             <div class="row justify-content-center mb-2">
                 <div class="col-8 col-md-4">
                     <input class="btn btn-dark btn-outline-danger" type="submit" value="Submit"/>
-                    <a class="ml-2 btn btn-light btn-outline-dark" th:href="@{/view-reviews}">Cancel</a>
+                    <a class="ml-2 btn btn-light btn-outline-dark" th:href="@{/display-movies}">Cancel</a>
                 </div>
             </div>
 

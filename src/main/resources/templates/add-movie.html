@@ -6,86 +6,94 @@
     <title>Add Review</title>
 </head>
 <body>
+
     <div th:replace="fragments/base :: navigation"></div>
     <div th:replace="fragments/base :: header"></div>
     <div th:replace="fragments/base :: footer"></div>
     <br>
-<form class="mt-5" th:action="@{/movie/add}" th:object="${movie}" method="post">
-    <div class="container-fluid">
 
-       <div class="row justify-content-center">
-            <div class="col-8 col-md-4">
-                <select class="form-control" id="category" th:field="*{category}" onchange="updateEpisodes(this.value, 'episodes')" required>
-                    <option th:value="Documentary" th:text="Documentary"></option>
-                    <option th:value="'TV Show'" th:text="'TV Show'"></option>
-                    <option th:value="Web-series" th:text="Web-series"></option>
-                    <option th:value="Movie" th:text="Movie"></option>
-                </select>
-            </div>
-        </div>
-        <div class="row justify-content-center mb-2">
-            <div class="col-8 col-md-4">
-                <span class="text-danger small" th:if="${#fields.hasErrors('category')}"
-                      th:errors="*{category}"></span>
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-8 col-md-4">
-                <input class="form-control" id="movieName" type="text"
-                       th:field="*{movieName}" placeholder="Name" required/>
-            </div>
-        </div>
-        <div class="row justify-content-center mb-2">
-            <div class="col-8 col-md-4">
-                <span class="text-danger small" th:if="${#fields.hasErrors('movieName')}"
-                th:errors="*{movieName}"></span>
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-8 col-md-4">
-                <select class="form-control" id="genre" th:field="*{genre}" required>
-                    <option th:value="Action" th:text="Action"></option>
-                    <option th:value="Horror" th:text="Horror"></option>
-                    <option th:value="Thriller" th:text="Thriller"></option>
-                    <option th:value="Adventure" th:text="Adventure"></option>
-                    <option th:value="Drama" th:text="Drama"></option>
-                    <option th:value="Romance" th:text="Romance"></option>
-                    <option th:value="Comedy" th:text="Comedy"></option>
-                    <option th:value="'Science Fiction'" th:text="'Science Fiction'"></option>
-                </select>
-            </div>
-        </div>
-        <div class="row justify-content-center mb-2">
-            <div class="col-8 col-md-4">
-                <span class="text-danger small" th:if="${#fields.hasErrors('genre')}"
-                      th:errors="*{genre}"></span>
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-8 col-md-4">
-                <input class="form-control" id="episodes" type="number" min="1" max="1000"
-                       th:field="*{episodes}" placeholder="Episodes" required/>
-            </div>
-        </div>
-        <div class="row justify-content-center mb-2">
-            <div class="col-8 col-md-4">
-                <span class="text-danger small" th:if="${#fields.hasErrors('episodes')}"
-                      th:errors="*{episodes}"></span>
-            </div>
-        </div>
-
-        <div class="row justify-content-center mb-2">
-            <div class="col-8 col-md-4">
-                <input class="btn btn-dark btn-outline-danger" type="submit" value="Submit"/>
-            </div>
-        </div>
-
+    <div th:if="${errorMsg}" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <span th:text="${errorMsg}"><strong> ERROR!</strong></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
-    <br>
-</form>
+    <form class="mt-5" th:action="@{/movie/add}" th:object="${movie}" method="post">
+        <div class="container-fluid">
+
+           <div class="row justify-content-center">
+                <div class="col-8 col-md-4">
+                    <select class="form-control" id="category" th:field="*{category}" onchange="updateEpisodes(this.value, 'episodes')" required>
+                        <option th:value="Documentary" th:text="Documentary"></option>
+                        <option th:value="'TV Show'" th:text="'TV Show'"></option>
+                        <option th:value="Web-series" th:text="Web-series"></option>
+                        <option th:value="Movie" th:text="Movie"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-2">
+                <div class="col-8 col-md-4">
+                    <span class="text-danger small" th:if="${#fields.hasErrors('category')}"
+                          th:errors="*{category}"></span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-4">
+                    <input class="form-control" id="movieName" type="text"
+                           th:field="*{movieName}" placeholder="Name" required/>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-2">
+                <div class="col-8 col-md-4">
+                    <span class="text-danger small" th:if="${#fields.hasErrors('movieName')}"
+                    th:errors="*{movieName}"></span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-4">
+                    <select class="form-control" id="genre" th:field="*{genre}" required>
+                        <option th:value="Action" th:text="Action"></option>
+                        <option th:value="Horror" th:text="Horror"></option>
+                        <option th:value="Thriller" th:text="Thriller"></option>
+                        <option th:value="Adventure" th:text="Adventure"></option>
+                        <option th:value="Drama" th:text="Drama"></option>
+                        <option th:value="Romance" th:text="Romance"></option>
+                        <option th:value="Comedy" th:text="Comedy"></option>
+                        <option th:value="'Science Fiction'" th:text="'Science Fiction'"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-2">
+                <div class="col-8 col-md-4">
+                    <span class="text-danger small" th:if="${#fields.hasErrors('genre')}"
+                          th:errors="*{genre}"></span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-4">
+                    <input class="form-control" id="episodes" type="number" min="1" max="1000"
+                           th:field="*{episodes}" placeholder="Episodes" required/>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-2">
+                <div class="col-8 col-md-4">
+                    <span class="text-danger small" th:if="${#fields.hasErrors('episodes')}"
+                          th:errors="*{episodes}"></span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-2">
+                <div class="col-8 col-md-4">
+                    <input class="btn btn-dark btn-outline-danger" type="submit" value="Submit"/>
+                </div>
+            </div>
+
+        </div>
+        <br/>
+    </form>
 
 </body>
 <th:block th:insert="fragments/base :: scripts"></th:block>

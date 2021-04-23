@@ -1,6 +1,8 @@
 package info.rateme.rateme.controllers;
 
+import info.rateme.rateme.data.MovieRepository;
 import info.rateme.rateme.data.ReviewRepository;
+import info.rateme.rateme.models.Movie;
 import info.rateme.rateme.models.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -16,15 +18,19 @@ import javax.validation.Valid;
 public class ReviewController {
 
     private ReviewRepository reviewRepo;
+    private MovieRepository movieRepo;
 
     @Autowired
-    public ReviewController(ReviewRepository reviewRepo){
+    public ReviewController(ReviewRepository reviewRepo, MovieRepository movieRepo){
         this.reviewRepo = reviewRepo;
+        this.movieRepo = movieRepo;
     }
 
-    @GetMapping
-    public String sendAddReviewForm(Model model) {
+    @GetMapping("/add/{movie_id}")
+    public String sendAddReviewForm(@PathVariable Long movie_id, Model model) {
         model.addAttribute("review", new Review());
+        Movie movie = movieRepo.findById(movie_id).get();
+        model.addAttribute("m", movie);
         return "add-review";
     }
 
@@ -35,7 +41,7 @@ public class ReviewController {
         return "view-review";
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public String handleReviewForm(@Valid @ModelAttribute("review") Review review, Errors errors) {
       if(errors.hasErrors())
           return "add-review";
@@ -51,7 +57,7 @@ public class ReviewController {
         try {
             Review originalReview = this.reviewRepo.findById(id).get();
             updatedOriginalReview(originalReview, review);
-            this.reviewRepo.save(review);
+            this.reviewRepo.save(originalReview);
         } catch (DataIntegrityViolationException e){
             errors.rejectValue("review", "invalidReview", "Review already made");
             return "view-review";
@@ -61,17 +67,8 @@ public class ReviewController {
     }
 
     private void updatedOriginalReview(Review original, Review update){
-       /* original.setMovieName(update.getMovieName());
-        original.setCategory(update.getCategory());
-        original.setEpisodes(update.getEpisodes());*/
         original.setDescription(update.getDescription());
         original.setRating(update.getRating());
-    }
-
-    @GetMapping("/delete/{id}")
-    public String deleteReview(@PathVariable Long id){
-        this.reviewRepo.deleteById(id);
-        return "redirect:/display-reviews";
     }
 
 }
