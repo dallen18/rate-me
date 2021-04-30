@@ -19,11 +19,11 @@
         </button>
     </div>
     <form class="mt-5" th:action="@{/movie/add}" th:object="${movie}" method="post">
-        <div class="container-fluid">
+        <div class="container-fluid" >
 
            <div class="row justify-content-center">
-                <div class="col-8 col-md-4">
-                    <select class="form-control" id="category" th:field="*{category}" onchange="updateEpisodes(this.value, 'episodes')" required>
+                <div class="col-8 col-md-4 ">
+                    <select class="form-control" id="border" th:field="*{category}" onchange="updateEpisodes(this.value, 'episodes')" required>
                         <option th:value="Documentary" th:text="Documentary"></option>
                         <option th:value="'TV Show'" th:text="'TV Show'"></option>
                         <option th:value="Web-series" th:text="Web-series"></option>
@@ -61,6 +61,7 @@
                         <option th:value="Drama" th:text="Drama"></option>
                         <option th:value="Romance" th:text="Romance"></option>
                         <option th:value="Comedy" th:text="Comedy"></option>
+                        <option th:value="Comedy" th:text="Childrens"></option>
                         <option th:value="'Science Fiction'" th:text="'Science Fiction'"></option>
                     </select>
                 </div>
@@ -87,7 +88,7 @@
 
             <div class="row justify-content-center mb-2">
                 <div class="col-8 col-md-4">
-                    <input class="btn btn-dark btn-outline-danger" type="submit" value="Submit"/>
+                    <input class="btn btn-light btn-outline-dark" type="submit" value="Submit"/>
                 </div>
             </div>
 

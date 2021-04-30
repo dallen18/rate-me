@@ -23,20 +23,24 @@ public class User implements UserDetails {
 
     @NotBlank(message = "Must enter password")
     @Size(min = 4,message = "Password must be 4 or more characters")
-    private String passWord;
+    private String password;
 
     @NotBlank(message = "Must enter first name")
     @Size(min = 2,message = "First name must be 2 or more characters")
-    private String userFirstName;
+    private String userFirstname;
 
     @NotBlank(message = "Must enter last name")
     @Size(min = 2,message = "Last name must be 2 or more characters")
-    private String userLastName;
+    private String userLastname;
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     @Column(unique = true, nullable = false)
     @NotBlank(message = "Must enter user name")
     @Size(min = 4,message = "Username must be 4 or more characters")
-    private String userName;
+    private String username;
 
     @Column(unique = true, nullable = false)
     @NotBlank(message = "Must enter full email address")
@@ -46,7 +50,7 @@ public class User implements UserDetails {
     private boolean enabled;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
-    private boolean creditialsNonExpired;
+    private boolean credentialsNonExpired;
 
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -58,38 +62,36 @@ public class User implements UserDetails {
     private LocalDateTime modified;
     private LocalDateTime created;
 
-
     public User() {
-        this.userFirstName = "";
-        this.userLastName = "";
-        this.userName = "";
+        this.userFirstname = "";
+        this.userLastname = "";
+        this.username = "";
         this.email = "";
-        this.passWord = "";
+        this.password = "";
         this.accountNonExpired = true;
         this.accountNonLocked = true;
-        this.accountNonExpired = true;
-
+        this.credentialsNonExpired = true;
 
     }
 
-    public User(String userFirstName, String userLastName, String userName, String email, String passWord) {
-        this.userFirstName = userFirstName;
-        this.userLastName = userLastName;
-        this.userName = userName;
+    public User(String userFirstname, String userLastname, String username, String email, String password) {
+        this.userFirstname = userFirstname;
+        this.userLastname = userLastname;
+        this.username = username;
         this.email = email;
-        this.passWord = passWord;
+        this.password = password;
         this.accountNonExpired = true;
         this.accountNonLocked = true;
-        this.accountNonExpired = true;
+        this.credentialsNonExpired = true;
 
     }
 
-    public User(String userName, String passWord) {
-        this.userName = userName;
-        this.passWord = passWord;
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
         this.accountNonExpired = true;
         this.accountNonLocked = true;
-        this.accountNonExpired = true;
+        this.credentialsNonExpired = true;
     }
 
     public Long getId() {
@@ -108,8 +110,8 @@ public class User implements UserDetails {
         this.accountNonLocked = accountNonLocked;
     }
 
-    public void setCreditialsNonExpired(boolean creditialsNonExpired) {
-        this.creditialsNonExpired = creditialsNonExpired;
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
     }
 
     public void setRoles(Collection<Role> roles) {
@@ -124,44 +126,34 @@ public class User implements UserDetails {
 
     public void setModified(LocalDateTime modified) { this.modified = modified; }
 
-    public String getUserFirstName() {
-        return userFirstName;
+    public String getUserFirstname() {
+        return userFirstname;
     }
 
-    public void setUserFirstName(String userFirstName) {
-        this.userFirstName = userFirstName;
+    public void setUserFirstname(String userFirstname) {
+        this.userFirstname = userFirstname;
     }
 
-    public String getUserLastName() {
-        return userLastName;
+    public String getUserLastname() {
+        return userLastname;
     }
 
-    public void setUserLastName(String userLastName) {
-        this.userLastName = userLastName;
+    public void setUserLastname(String userLastname) {
+        this.userLastname = userLastname;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(){this.email = email;}
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassWord() {
-        return passWord;
-    }
-
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public enum Role{ROLE_ADMIN,ROLE_USER}
@@ -178,26 +170,25 @@ public class User implements UserDetails {
     }
 
     @Override
-    public String toString() {return this.userFirstName + " " + this.userLastName;}
+    public String toString() {return this.userFirstname + " " + this.userLastname;}
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<>();
         for (Role role: roles){
-            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(roles.toString());
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.toString());
             authorities.add(grantedAuthority);
         }
         return authorities;
     }
 
-    @Override
+
     public String getPassword() {
-        return this.passWord;
+        return this.password;
     }
 
-    @Override
     public String getUsername() {
-        return this.userName;
+        return this.username;
     }
 
     @Override
@@ -212,7 +203,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.creditialsNonExpired;
+        return this.credentialsNonExpired;
     }
 
     @Override

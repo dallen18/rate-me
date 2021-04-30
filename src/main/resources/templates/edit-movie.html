@@ -12,7 +12,7 @@
 
     <div class="container-fluid mt-3">
         <div class="row justify-content-center">
-            <h3 class="text-center col-12" sec:authorize="hasRole('ADMIN')">Edit Movie</h3>
+            <h3 id="edit" class="text-center col-12" sec:authorize="hasRole('ADMIN')">Make edit to an entry</h3>
             <h3 class="text-center col-12" sec:authorize="hasRole('USER')">View Movie Details</h3>
         </div>
     </div>
@@ -87,7 +87,7 @@
 
             <div class="row justify-content-center mb-2">
                 <div class="col-8 col-md-4">
-                    <input class="btn btn-dark btn-outline-danger" type="submit" value="Submit"/>
+                    <input class="btn btn-light btn-outline-dark" type="submit" value="Submit"/>
                     <a class="ml-2 btn btn-light btn-outline-dark" th:href="@{/display-movies}">Cancel</a>
                 </div>
             </div>
@@ -116,7 +116,8 @@
         <div class="container-fluid" sec:authorize="hasRole('USER')">
             <div class="row justify-content-center">
                 <div>
-                    <a th:href="@{/review/add/{movie_id}(movie_id=${movie.id})}" class="btn btn-dark btn-outline-danger">Add Review</a>
+                    <a th:href="@{/review/add/{movie_id}(movie_id=${movie.id})}" class="btn btn-light btn-outline-dark">Add Review</a>
+                   <a class="ml-2 btn btn-light btn-outline-dark" th:href="@{/display-movies}">Back to Movies</a>
                 </div>
             </div>
         </div>

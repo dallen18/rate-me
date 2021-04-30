@@ -7,18 +7,50 @@
     <title>All Reviews</title>
 <body>
     <div th:replace="fragments/base :: navigation"></div>
+    <div class="topnav">
+        <input type="text" placeholder="Search..">
+    </div>
     <div th:replace="fragments/base :: header"></div>
     <div th:replace="fragments/base :: footer"></div>
 
-    <div class="container-fluid mt-5">
-        <div th:each="review: ${reviews}">
-            <div class="row justify-content-center mb-3">
-                <div class="col-2 col-md-3 card">
-                    <div class="card-body">
-                        <h5 class="card-title d-inline" th:text="${review.movie.movieName}"></h5>
-                        <a th:href="@{/review/view/{id}(id=${review.id})}" class="ml-3 text-dark"><i class="fas fa-eye"></i></a>
+    <!--<div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-6 col-md-4" th:each="reviews: ${reviews}">
+                <div class="justify-content-center mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${reviews.get().movie.mo}"></h5>
+                            <span th:text="${reviews.category}"></span><br/>
+                            <span th:text="${reviews.genre}"></span>
+                            <a th:href="@{/review/view/{id}(id=${reviews.id})}" class="ml-3 text-dark"><i class="fas fa-eye"></i></a>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>-->
+
+
+    <div class="container-fluid mt-5">
+        <div th:each="i: ${#numbers.sequence(0, reviews.size() - 1)}">
+            <div class="row justify-content-center mb-3">
+                <div class="col-10 col-md-6 card" id="border">
+                    <div class="card-body">
+                        <h5 class="card-title text-center" th:text="${reviews.get(i).movie.movieName}"></h5><br>
+                        <span class="card-body " th:text="'Genre: ' + ${reviews.get(i).movie.getGenre()}"></span><br>
+                        <span class="card-body" th:text="'Category: ' + ${reviews.get(i).movie.getCategory()}"></span><br>
+                        <span class="card-body" th:text="'Number of episodes: ' + ${reviews.get(i).movie.getEpisodes()}"></span><br>
+                        <span class="card-body" th:text="'Rated by user: ' + ${reviews.get(i).rating}"></span><br>
+                        <span class="card-body" th:text="'Review:' + ${reviews.get(i).movie.getReviews()}"></span>
+                    </div>
+                </div>
+
+                <!--<div class="col-4 col-md-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title d-inline" th:text="${reviews.get(i + 1).movie.movieName}"></h5>
+                        &lt;!&ndash;<a th:href="@{/review/view/{id}(id=${review.id})}" class="ml-3 text-dark"><i class="fas fa-eye"></i></a>&ndash;&gt;
+                    </div>
+                </div>-->
             </div>
         </div>
     </div>

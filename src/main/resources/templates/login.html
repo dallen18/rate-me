@@ -22,8 +22,8 @@
 
             <div class="row justify-content-center">
                 <div class="col-8 col-md-3 mb-3">
-                    <input class="form-control" id="username" type="text" th:name="username"
-                           placeholder="Username" required/>
+                    <input class="form-control" id="email" type="text" th:name="email"
+                           placeholder="Email" required/>
                 </div>
             </div>
 
@@ -36,7 +36,7 @@
 
             <div class="row justify-content-center">
                 <div class="col-8 col-md-3 mb-3" th:if="${param.error}">
-                    <span class="text-danger">Invalid username or password</span>
+                    <span class="text-danger">Invalid email or password</span>
                 </div>
             </div>
 

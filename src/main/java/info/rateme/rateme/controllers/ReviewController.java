@@ -43,10 +43,10 @@ public class ReviewController {
 
     @PostMapping("/add")
     public String handleReviewForm(@Valid @ModelAttribute("review") Review review, Errors errors) {
-      if(errors.hasErrors())
-          return "add-review";
-      this.reviewRepo.save(review);
-      return "redirect:/display-reviews";
+        if(errors.hasErrors())
+            return "add-review";
+        this.reviewRepo.save(review);
+        return "redirect:/display-reviews";
     }
 
     @PostMapping("/edit/{id}")

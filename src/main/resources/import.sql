@@ -1,5 +1,10 @@
-INSERT INTO movie(id, movie_name, category, genre, episodes) VALUES (15001, 'Toy Story','Movie', 'Adventure', '1' )
-INSERT INTO movie(id, movie_name, category, genre, episodes) VALUES (15002, 'Mulan','Movie', 'Adventure', '1' )
-INSERT INTO movie(id, movie_name, category, genre, episodes) VALUES (15003, 'Inception','Movie', 'Adventure', '1' )
-INSERT INTO movie(id, movie_name, category, genre, episodes) VALUES (15004, 'Cars','Movie', 'Adventure', '1' )
-INSERT INTO movie(id, movie_name, category, genre, episodes) VALUES (15005, 'Jurassic Park','Movie', 'Adventure', '1' )
+INSERT INTO movie(id, movie_name, category, genre, episodes) VALUES (15001, 'Toy Story','Movie', 'Adventure', '1' );
+INSERT INTO movie(id, movie_name, category, genre, episodes) VALUES (15002, 'Mulan','Movie', 'Adventure', '1' );
+INSERT INTO movie(id, movie_name, category, genre, episodes) VALUES (15003, 'Inception','Movie', 'Adventure', '1' );
+INSERT INTO movie(id, movie_name, category, genre, episodes) VALUES (15004, 'Cars','Movie', 'Adventure', '1' );
+INSERT INTO movie(id, movie_name, category, genre, episodes) VALUES (15005, 'Jurassic Park','Movie', 'Adventure', '1' );
+INSERT INTO review(id,movie_id, rating, description) VALUES (1001, 15001, 10, 'Childhood favorite movie, watched a million times and never gets old!');
+INSERT INTO review(id,movie_id, rating, description) VALUES (1002, 15002, 10, 'Great movie with lots of good music.');
+INSERT INTO review(id,movie_id, rating, description) VALUES (1003, 15003, 10, 'Leonardo DiCaprio is all!!!');
+INSERT INTO review(id,movie_id, rating, description) VALUES (1004, 15004, 10, 'Funny movie');
+INSERT INTO review(id,movie_id, rating, description) VALUES (1005, 15005, 10, 'Classic, must watch');
