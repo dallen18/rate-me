@@ -84,9 +84,9 @@ public class MovieController {
         }
 
         List<Movie> movies = movieRepo.findByMovieName(movie.getMovieName());
-        boolean matchfound = movies.stream().anyMatch(m -> m.getGenre().equals(movie.getGenre()) && m.getCategory().equals(movie.getCategory()) && m.getEpisodes().equals(movie.getEpisodes()));
+        boolean matchfound = movies.stream().anyMatch(m -> m.getGenre().equals(movie.getGenre()) && m.getCategory().equals(movie.getCategory()));
         if(matchfound) {
-            model.addAttribute("errorMsg", "Entry Exist");
+            model.addAttribute("errorMsg", "Entry Exists");
             return "add-movie";
         }
 

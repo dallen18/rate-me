@@ -49,6 +49,12 @@ public class ReviewController {
         return "redirect:/display-reviews";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteReview(@PathVariable Long id){
+        this.reviewRepo.deleteById(id);
+        return "redirect:/display-movies";
+    }
+
     @PostMapping("/edit/{id}")
     public String handleEditReviewForm(@PathVariable Long id, @Valid @ModelAttribute("review") Review review, Errors errors) {
         if(errors.hasErrors())

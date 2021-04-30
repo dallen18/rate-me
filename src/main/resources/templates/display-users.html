@@ -13,20 +13,18 @@
     <div class="container-fluid mt-5">
         <div th:each="user: ${users}">
             <div class="row justify-content-center mb-5">
-                <div class="col-6 col-md-3 card" id="border">
+                <div class="col-9 col-md-6 col-lg-4 card" id="border">
                     <div class="card-body">
-                        <div class="row">
-                            <h5 class="card-title" th:text="${user.getUserFirstname()}"></h5>
-                            &nbsp;
-                            <h5 class="card-title" th:text="${user.getUserLastname()}"></h5>
+                        <div class="card-title">
+                            <h5 class="card-title" th:text="'Name: '+ ${user.getUserFirstname()} + ' ' + ${user.getUserLastname()}"></h5>
                         </div>
-                        <span class="card-text" th:text="${user.getUsername()}"></span>
+                        <span class="card-text" th:text="'Username: ' + ${user.getUsername()}"></span>
                         <br/>
-                        <span class="card-text" th:text="${user.getEmail()}"></span>
+                        <span class="card-text" th:text="'Email: ' + ${user.getEmail()}"></span>
                         <br/>
-                        <span class="card-text" th:text="${user.getCreated()}"></span>
+                        <span class="card-text" th:text="'Date Created: ' + ${user.getCreated()}"></span>
                         <br/>
-                        <span class="card-text" th:text="${user.getModified()}"></span>
+                        <span class="card-text" th:text="'Date Modified ' + ${user.getModified()}"></span>
                     </div>
                 </div>
             </div>

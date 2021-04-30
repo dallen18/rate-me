@@ -29,7 +29,7 @@ input, select{
     text-align-last: center;
 }
 
-#border, #genre, #movieName, #episodes, #email, #password, #category{
+#border, #genre, #movieName, #episodes, #email, #password, #category, #firstname, #lastname, #username{
     border-color: black;
     border-width: thin;
     background-color: wheat;
@@ -44,12 +44,26 @@ input, select{
     font-size: xx-large;
     color: coral;
     letter-spacing: -1px;
-
 }
 #rateme{
     letter-spacing: 2px;
     font-size: xxx-large;
 }
+#fixed{
+    height: 67%;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    overflow: scroll;
+    z-index: -1000;
+}
+#logout{
+    font-family: oswald;
+    color: coral;
+    letter-spacing: -1px;
+    font-size: x-large;
+}
+
 
 
 
