@@ -13,7 +13,7 @@
     <div class="container-fluid mt-3">
         <div class="row justify-content-center">
             <h3 id="edit" class="text-center col-12" sec:authorize="hasRole('ADMIN')">Make edit to an entry</h3>
-            <h3 class="text-center col-12" sec:authorize="hasRole('USER')">View Movie Details</h3>
+            <h3 class="edit text-center col-12" sec:authorize="hasRole('USER')">View Movie Details</h3>
         </div>
     </div>
 
@@ -95,11 +95,11 @@
 
         <div class="container-fluid" sec:authorize="hasRole('USER')">
             <div class="row justify-content-center">
-                <div class="col-8 col-md-4">
-                    <input readonly class="form-control-plaintext" type="text" th:value="'Category: ' + *{category}"/>
-                    <input readonly class="form-control-plaintext" type="text" th:value="'Movie Name: ' + *{movieName}"/>
-                    <input readonly class="form-control-plaintext" type="text" th:value="'Genre: ' + *{genre}"/>
-                    <input readonly class="form-control-plaintext" type="text" th:value="'Episodes: ' + *{episodes}"/>
+                <div class="usermovie col-8 col-md-4" >
+                    <input readonly class="usermovie form-control-plaintext" type="text" th:value="'Category: ' + *{category}"/>
+                    <input readonly class="usermovie form-control-plaintext" type="text" th:value="'Movie Name: ' + *{movieName}"/>
+                    <input readonly class="usermovie form-control-plaintext" type="text" th:value="'Genre: ' + *{genre}"/>
+                    <input readonly class="usermovie form-control-plaintext" type="text" th:value="'Episodes: ' + *{episodes}"/>
                 </div>
             </div>
         </div>
@@ -107,8 +107,8 @@
         <div class="container-fluid" sec:authorize="hasRole('USER')">
             <div class="row justify-content-center">
                 <div class="col-8 col-md-4">
-                    <input readonly class="form-control-plaintext" type="text" th:value="'Date created: ' + ${#temporals.format(movie.created, 'dd-MM-yyyy HH:mm')}"/>
-                    <input readonly class="form-control-plaintext" type="text" th:value="'Date modified: ' + ${#temporals.format(movie.modified, 'dd-MM-yyyy HH:mm')}"/>
+                    <input readonly class="usermovie form-control-plaintext" type="text" th:value="'Date created: ' + ${#temporals.format(movie.created, 'dd-MM-yyyy HH:mm')}"/>
+                    <input readonly class="usermovie form-control-plaintext" type="text" th:value="'Date modified: ' + ${#temporals.format(movie.modified, 'dd-MM-yyyy HH:mm')}"/>
                 </div>
             </div>
         </div>

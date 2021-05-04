@@ -97,7 +97,6 @@ public class MovieController {
     public String handleEditMovieForm(@PathVariable Long id, @Valid @ModelAttribute("movie") Movie movie, Errors errors, Model model) {
         if(errors.hasErrors())
             return "edit-movie";
-
         if(movie.getCategory().equals("Movie")) {
             if (!movie.getEpisodes().equals("1")) {
                 model.addAttribute("errorMsg", "Movie can only have 1 episode");
@@ -115,12 +114,11 @@ public class MovieController {
         try {
             Movie originalMovie = this.movieRepo.findById(id).get();
             updatedOriginalMovie(originalMovie, movie);
-            this.movieRepo.save(movie);
+            this.movieRepo.save(originalMovie);
         } catch (DataIntegrityViolationException e){
-            errors.rejectValue("movie", "invalidMovie", "Invalid movie choice");
+            errors.rejectValue("movieName", "invalidMovie", "Invalid movie choice");
             return "edit-movie";
         }
-        this.movieRepo.save(movie);
         return "redirect:/display-movies";
     }
 

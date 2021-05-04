@@ -39,10 +39,11 @@ input, select{
 }
 
 #edit{
-    font-family: oswald;
+    font-family: oswald,serif;
     font-size: xx-large;
     color: coral;
     letter-spacing: -1px;
+    color: coral;
 }
 #rateme{
     letter-spacing: 2px;
@@ -59,7 +60,7 @@ input, select{
     z-index: -1000;
 }
 #logout{
-    font-family: oswald;
+    font-family: oswald,serif;
     color: coral;
     letter-spacing: -1px;
     font-size: x-large;

@@ -36,7 +36,7 @@ public class Movie {
     @NotBlank(message = "Must enter episode amount")
     private String episodes;
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.REMOVE)
     private List<Review> reviews;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
