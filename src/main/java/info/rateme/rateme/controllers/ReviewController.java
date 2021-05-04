@@ -2,7 +2,6 @@ package info.rateme.rateme.controllers;
 
 import info.rateme.rateme.data.MovieRepository;
 import info.rateme.rateme.data.ReviewRepository;
-import info.rateme.rateme.data.UserRepository;
 import info.rateme.rateme.models.Movie;
 import info.rateme.rateme.models.Review;
 import info.rateme.rateme.models.User;
@@ -16,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 @RequestMapping("/review")
@@ -23,11 +25,10 @@ public class ReviewController {
 
     private ReviewRepository reviewRepo;
     private MovieRepository movieRepo;
-    private UserRepository userRepo;
+
 
     @Autowired
-    public ReviewController(ReviewRepository reviewRepo, MovieRepository movieRepo, UserRepository userRepo){
-        this.userRepo = userRepo;
+    public ReviewController(ReviewRepository reviewRepo, MovieRepository movieRepo){
         this.reviewRepo = reviewRepo;
         this.movieRepo = movieRepo;
     }
@@ -58,6 +59,14 @@ public class ReviewController {
             return "add-review";
         }
         return "redirect:/display-reviews";
+    }
+
+    @PostMapping("/search")
+    public String handleSearchForm(@RequestParam String search, Model model, @AuthenticationPrincipal User user) {
+        List<Movie> movies = this.movieRepo.findAllByMovieNameContaining(search);
+        List<Review> reviews = movies.stream().flatMap(movie -> movie.getReviews().stream()).collect(Collectors.toList());
+        model.addAttribute("reviews", reviews);
+        return "display-reviews";
     }
 
     @GetMapping("/delete/{id}")

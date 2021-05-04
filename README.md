@@ -1,7 +1,7 @@
 # Rate Me!
 
 1. Idea: My project will be a rating website, that allows users to blog and critique recently
-   watched reviews and tv series.
+   watched movies and tv series.
 2. Motivation: Since the pandemic began, I have been spending much more time at home
    than I would under normal circumstances. This has led to a larger consumption of
    television and subsequently created a need for a reliable source of review options. I
@@ -12,9 +12,8 @@
    my friends and family have watched recently and see how they rate it and why. With
    the lack of social interaction, I believe this is a great way to stay connected with others
    during this period and have discussions about common interests.
-3. Application: This web app allows users to add friends and view their page. Each user’s
-   page will contain a review, tv series, and documentary ratings with an option to write
-   about why they liked or disliked the production. The user also has the option of
-   providing the service in which they viewed the film, allowing others to easily find and
-   enjoy the product as well.
+3. Application: This web app allows users to create a profile. From this profile the user can
+   add movies, tv-series, and many other viewing content options,
+   and gives them the option to rate and review this material. The user also has the option to rate
+   and review material that others have added, and can read what other users have posted.
 4. Application Name: Rate Me!

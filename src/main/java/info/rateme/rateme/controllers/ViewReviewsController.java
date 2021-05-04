@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+
 @Controller
 @RequestMapping("/display-reviews")
 public class ViewReviewsController {
@@ -27,5 +28,4 @@ public class ViewReviewsController {
         model.addAttribute("reviews", reviews);
         return "display-reviews";
     }
-
 }

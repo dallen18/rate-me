@@ -1,9 +1,7 @@
 package info.rateme.rateme.controllers;
 
 import info.rateme.rateme.data.MovieRepository;
-import info.rateme.rateme.data.ReviewRepository;
 import info.rateme.rateme.models.Movie;
-import info.rateme.rateme.models.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

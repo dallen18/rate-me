@@ -1,8 +1,6 @@
 package info.rateme.rateme.controllers;
 
 import info.rateme.rateme.data.UserRepository;
-import info.rateme.rateme.models.Movie;
-import info.rateme.rateme.models.Review;
 import info.rateme.rateme.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -12,9 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/user")

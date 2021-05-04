@@ -12,6 +12,17 @@
     <div th:replace="fragments/base :: footer"></div>
 
     <div class="container-fluid mt-5" id="fixed">
+        <form th:action="@{/review/search}" method="post">
+            <div class="input-group row justify-content-center mb-5">
+                <div class="form-outline">
+                    <input type="search" placeholder="search movie name" name="search" id="search" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-secondary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+
         <div th:each="review: ${reviews}">
             <div class="row justify-content-center mb-5">
                 <div class="col-10 col-md-6 card" id="border">

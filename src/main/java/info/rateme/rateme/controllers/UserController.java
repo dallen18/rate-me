@@ -1,22 +1,14 @@
 package info.rateme.rateme.controllers;
 
-import info.rateme.rateme.data.MovieRepository;
-import info.rateme.rateme.data.ReviewRepository;
 import info.rateme.rateme.data.UserRepository;
-import info.rateme.rateme.models.Movie;
-import info.rateme.rateme.models.Review;
 import info.rateme.rateme.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -24,15 +16,11 @@ import java.util.Set;
 public class UserController {
 
     private UserRepository userRepo;
-    private ReviewRepository reviewRepo;
-    private MovieRepository movieRepo;
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserController(UserRepository userRepo, ReviewRepository reviewRepo, MovieRepository movieRepo, PasswordEncoder passwordEncoder){
-        this.movieRepo = movieRepo;
+    public UserController(UserRepository userRepo, PasswordEncoder passwordEncoder){
         this.userRepo = userRepo;
-        this.reviewRepo = reviewRepo;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -71,11 +59,5 @@ public class UserController {
             }
         }
         return "login";
-    }
-
-    private void updatedOriginalUser(User original, User update) {
-        original.setUsername(update.getUsername());
-        original.setPassword(update.getPassword());
-
     }
 }
