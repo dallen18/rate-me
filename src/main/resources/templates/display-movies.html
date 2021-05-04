@@ -1,21 +1,100 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <th:block th:insert="fragments/base :: headerFiles"></th:block>
+    <th:block th:fragment="headerFiles">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}">
+        <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.15.2/css/all.min.css}">
+        <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.15.2/css/fontawesome.min.css}">
+        <link th:href="@{/css/movie_display.css}" rel="stylesheet">
+    </th:block>
     <title>Movies</title>
 </head>
 <body>
 
-    <div th:replace="fragments/base :: navigation"></div>
-
-    <div th:replace="fragments/base :: header"></div>
+<nav th:fragment="navigation" class="navbar navbar-expand-lg navbar-light
+      border border-dark" id="border">
+    <a class="navbar-brand" th:href="@{/}"><img id="logo" th:src="@{/images/movie.png}" alt="camera icon"/></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarContent" aria-controls="navbarContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/' ? 'active' : ''}"
+                sec:authorize="!isAuthenticated()">
+                <a class="nav-link" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/user' ? 'active' : ''}"
+                sec:authorize="!isAuthenticated()">
+                <a class="nav-link" th:href="@{/user}">Sign Up</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/view-users' ? 'active' : ''}"
+                sec:authorize="hasRole('ADMIN')">
+                <a class="nav-link" th:href="@{/view-users}">View Users</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/movie/add' ? 'active' : ''}
+                " sec:authorize="isAuthenticated()">
+                <a class="nav-link" th:href="@{/movie/add}">Add Movie</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/display-movies' ? 'active' : ''}"
+                sec:authorize="isAuthenticated()">
+                <a class="nav-link" th:href="@{/display-movies}">View Movies</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/display-reviews' ? 'active' : ''}"
+                sec:authorize="isAuthenticated()">
+                <a class="nav-link" th:href="@{/display-reviews}">View Reviews</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/user/view' ? 'active' : ''}"
+                sec:authorize="isAuthenticated()">
+                <a class="nav-link" th:href="@{/user/view}">Update Profile</a>
+            </li>
+        </ul>
+        <a th:href="@{/logout}" class="btn btn-light btn-outline-dark"
+           sec:authorize="isAuthenticated()">Logout</a>
+    </div>
+</nav>
+<div th:fragment="header">
+    <div class="container-fluid">
+        <div class="row justify-content-center mt-3 mb-2">
+            <div class="col-12">
+                <h2 id="rateme" class="text-center">Rate Me!</h2>
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="container">
+        <div class="photobanner">
+            <img class="first" th:src="@{/images/inception.jpeg}" width="300" id="inception" alt="inception cover" />
+            <img class="photo" th:src="@{/images/toystory.jpeg}" alt="cover for toystory 3" />
+            <img class="photo" th:src="@{/images/snowfall.jpeg}" alt="cover of snowfall" />
+            <img class="photo" th:src="@{/images/mulans.jpg}" alt="cover for mulan" />
+            <img class="photo" th:src="@{/images/jurassic.jpeg}" alt="cover for jurassic park"/>
+            <img class="photo" th:src="@{/images/cars.jpeg}" alt="cover for cars"/>
+            <img class="photo" th:src="@{/images/irishman.jpeg}" alt="cover for the irishman"/>
+            <img class="photo" th:src="@{/images/parasite.jpeg}" alt="cover for parasite"/>
+            <img class="photo" th:src="@{/images/avengers.jpeg}" alt="cover for avengers endgame"/>
+            <img th:src="@{/images/inception.jpeg}" width="300" id="photo" alt="inception cover" />
+            <img class="photo" th:src="@{/images/toystory.jpeg}" alt="cover for toystory 3" />
+            <img class="photo" th:src="@{/images/snowfall.jpeg}" alt="cover of snowfall" />
+            <img class="photo" th:src="@{/images/mulans.jpg}" alt="cover for mulan" />
+            <img class="photo" th:src="@{/images/jurassic.jpeg}" alt="cover for jurassic park"/>
+            <img class="photo" th:src="@{/images/cars.jpeg}" alt="cover for cars"/>
+            <img class="photo" th:src="@{/images/irishman.jpeg}" alt="cover for the irishman"/>
+            <img class="photo" th:src="@{/images/parasite.jpeg}" alt="cover for parasite"/>
+            <img class="photo" th:src="@{/images/avengers.jpeg}" alt="cover for avengers endgame"/>
+        </div>
+    </div>
 
     <div class="container-fluid mt-5">
         <div class="row">
             <div class="col-6 col-md-4" th:each="movie: ${movies}">
                 <div class="justify-content-center mb-3">
-                    <div class="card" id="border">
+                    <div class="card my_style1" id="border">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${movie.movieName}"></h5>
                             <span th:text="${movie.category}"></span><br/>
@@ -32,7 +111,7 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="movieModalLabel1">Delete Movie?</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true"></span>
                                 </button>
                             </div>
                             <div class="modal-body">
@@ -49,7 +128,6 @@
             </div>
         </div>
     </div>
-
 <div th:replace="fragments/base :: footer"></div>
 
 </body>

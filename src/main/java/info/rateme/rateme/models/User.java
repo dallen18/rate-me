@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,10 +33,6 @@ public class User implements UserDetails {
     @NotBlank(message = "Must enter last name")
     @Size(min = 2,message = "Last name must be 2 or more characters")
     private String userLastname;
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     @Column(unique = true, nullable = false)
     @NotBlank(message = "Must enter user name")
@@ -98,6 +95,7 @@ public class User implements UserDetails {
         return id;
     }
 
+
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
@@ -156,6 +154,14 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public enum Role{ROLE_ADMIN,ROLE_USER}
 
     @PrePersist
@@ -210,6 +216,12 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return this.enabled;
     }
+
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviews;
+
+    @OneToMany(mappedBy = "user")
+    private List<Movie> movies;
 }
 
 

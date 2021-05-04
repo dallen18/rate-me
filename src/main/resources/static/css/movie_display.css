@@ -1,0 +1,158 @@
+#logo{
+    height: 90px;
+}
+
+.footer{
+    z-index: 1;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    background-color: darkgray;
+    height: 40px;
+}
+
+.card{
+    z-index: 0;
+}
+
+body {
+    background-image: url("../images/watching_tv.jpeg");
+    margin-bottom: 5.5em;
+    opacity:96%;
+}
+
+.my_pointer{
+    cursor: pointer;
+}
+
+input, select{
+    text-align-last: center;
+}
+
+#border, #genre, #movieName, #episodes, #email, #password, #category, #firstname, #lastname, #username, .my_style1{
+    border-color: black;
+    border-width: thin;
+    background-color: wheat;
+    opacity: 90%;
+    font-size: larger;
+    font-family: arvo, "Times New Roman";
+}
+
+#edit{
+    font-family: oswald;
+    font-size: xx-large;
+    color: coral;
+    letter-spacing: -1px;
+}
+#rateme{
+    letter-spacing: 2px;
+    font-size: 75px;
+    color:coral;
+    text-shadow: 1px 1px 10px rgba(0,0,0,0.3);
+}
+#fixed{
+    height: 67%;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    overflow: scroll;
+    z-index: -1000;
+}
+#logout{
+    font-family: oswald;
+    color: coral;
+    letter-spacing: -1px;
+    font-size: x-large;
+}
+
+
+* {margin: 0; padding: 0;}
+
+#container {
+    width: 100%;
+    overflow: hidden;
+    margin: 50px auto;
+    background: black;
+}
+
+.photobanner {
+    height: 220px;
+    width: 3550px;
+    margin-bottom: 80px;
+}
+
+.first {
+    -webkit-animation: bannermove 40s linear infinite;
+    -moz-animation: bannermove 40s linear infinite;
+    -ms-animation: bannermove 40s linear infinite;
+    -o-animation: bannermove 40s linear infinite;
+    animation: bannermove 40s linear infinite;
+}
+
+@keyframes bannermove {
+    0% {
+        margin-left: 0px;
+    }
+    100% {
+        margin-left: -2125px;
+    }
+
+}
+
+@-moz-keyframes bannermove {
+    0% {
+        margin-left: 0px;
+    }
+    100% {
+        margin-left: -2125px;
+    }
+
+}
+
+@-webkit-keyframes bannermove {
+    0% {
+        margin-left: 0px;
+    }
+    100% {
+        margin-left: -2125px;
+    }
+
+}
+
+@-ms-keyframes bannermove {
+    0% {
+        margin-left: 0px;
+    }
+    100% {
+        margin-left: -2125px;
+    }
+
+}
+
+@-o-keyframes bannermove {
+    0% {
+        margin-left: 0px;
+    }
+    100% {
+        margin-left: -2125px;
+    }
+
+}
+#photo{
+    height: 300px;
+    width: 300px;
+}
+.photo{
+    height: 300px;
+    width: 300px;
+}
+#inception{
+    height: 300px;
+    width: 300px;
+}
+
+
+
+
+
+

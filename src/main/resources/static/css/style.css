@@ -1,6 +1,9 @@
 #logo{
     height: 90px;
+    mask-image: linear-gradient(left, black 10%, transparent 50%);
 }
+
+
 
 .footer{
     z-index: 1;
@@ -36,7 +39,7 @@ input, select{
     opacity: 90%;
     font-size: larger;
     font-family: arvo, "Times New Roman";
-
+    color: black;
 }
 
 #edit{
@@ -47,7 +50,9 @@ input, select{
 }
 #rateme{
     letter-spacing: 2px;
-    font-size: xxx-large;
+    font-size: 75px;
+    color:coral;
+    text-shadow: 1px 1px 10px rgba(0,0,0,0.3);
 }
 #fixed{
     height: 67%;
@@ -63,6 +68,12 @@ input, select{
     letter-spacing: -1px;
     font-size: x-large;
 }
+
+#title{
+    font-size: 30px;
+}
+
+
 
 
 

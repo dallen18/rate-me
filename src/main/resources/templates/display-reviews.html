@@ -16,8 +16,8 @@
         <div th:each="review: ${reviews}">
             <div class="row justify-content-center mb-5">
                 <div class="col-10 col-md-6 card" id="border">
-                    <div class="card-body">
-                        <h5 class="card-title text-center" th:text="${review.getMovie()}"></h5><br>
+                    <div class="card-body" id="reviewInfo">
+                        <h5 class="card-title text-center" id="title" th:text="${review.getMovie()}"></h5>
                         <span class="card-body " th:text="'Genre: ' + ${review.movie.getGenre()}"></span><br>
                         <span class="card-body" th:text="'Category: ' + ${review.movie.getCategory()}"></span><br>
                         <span class="card-body" th:text="'Number of episodes: ' + ${review.movie.getEpisodes()}"></span><br>

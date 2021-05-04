@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface MovieRepository extends CrudRepository<Movie, Long> {
     public List<Movie> findByMovieName(String movieName);
+    public List<Movie> findByUserId(Long id);
 }

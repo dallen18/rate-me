@@ -18,8 +18,11 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <form class="mt-5" th:action="@{/movie/add}" th:object="${movie}" method="post">
-        <div class="container-fluid" >
+    <!--<form class="mt-3 mb-3" th:action="@{/movie/edit/{id}(id=${movie.id})}" th:object="${movie}" method="post">
+        <div class="container-fluid">-->
+
+    <form class="mt-5" th:action="@{/movie/add}"  th:object="${movie}" method="post">
+        <div class="container-fluid" id="movie">
 
            <div class="row justify-content-center">
                 <div class="col-8 col-md-4 ">
@@ -85,6 +88,10 @@
                           th:errors="*{episodes}"></span>
                 </div>
             </div>
+
+            <select type="text" class="form-control" id="user" hidden="hidden">
+                <option th:value="${user?.username}"></option>
+            </select>
 
             <div class="row justify-content-center mb-2">
                 <div class="col-8 col-md-4">

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <th:block th:insert="fragments/base :: headerFiles"></th:block>
+    <title>Edit Movie</title>
+</head>
+<body>
+    <div th:replace="fragments/base :: navigation"></div>
+    <div th:replace="fragments/base :: header"></div>
+
+    <div class="container-fluid mt-3">
+        <div class="row justify-content-center">
+            <h3 id="edit" class="text-center col-12" sec:authorize="hasRole('ADMIN')">Change username or password</h3>
+            <h3 class="text-center col-12" sec:authorize="hasRole('USER')">User Details/Change username or password</h3>
+        </div>
+    </div>
+
+    <form class="mt-3 mb-3 justify-content-center" th:action="@{/view-user/{id}(id=${user.id})}" th:object="${user}" method="post">
+        <div class="container-fluid row justify-content-center">
+            <div class="card-body col-8 col-md-6 col-lg-5 card  row justify-content-center" id="border">
+                <div class="justify-content-center">
+                    <h5 class="card-title justify-content-center" th:text="${user.getUserFirstname()} + ' ' + ${user.getUserLastname()}"></h5>
+                    <div class="card-body justify-content-center">
+                        <span class="justify-content-center" th:text="'Username: ' + ${user.getUsername()}"></span>
+                        <br/>
+                        <span class="card-text" th:text="'Email: ' + ${user.getEmail()}"></span>
+                        <br/>
+                        <span class="card-text" th:text="'Date Created: ' + ${user.getCreated()}"></span>
+                        <br/>
+                        <span class="card-text" th:text="'Date Modified ' + ${user.getModified()}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid" sec:authorize="hasRole('USER')">
+            <div class="row justify-content-center">
+                <div>
+                   <a class="ml-2 btn btn-light btn-outline-dark" th:href="@{/display-movies}">Back to Movies</a>
+                    <a class="ml-2 btn btn-light btn-outline-dark" th:href="@{/user/edit}">Edit details</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <div th:replace="fragments/base :: footer"></div>
+</body>
+<th:block th:insert="fragments/base :: scripts"></th:block>
+</html>

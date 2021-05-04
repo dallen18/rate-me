@@ -39,6 +39,16 @@ public class Movie {
     @OneToMany(mappedBy = "movie")
     private List<Review> reviews;
 
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "user_id")
+    private User user;
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     private LocalDateTime modified;
 
     private LocalDateTime created;

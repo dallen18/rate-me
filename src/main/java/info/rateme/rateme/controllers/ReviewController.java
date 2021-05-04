@@ -2,16 +2,20 @@ package info.rateme.rateme.controllers;
 
 import info.rateme.rateme.data.MovieRepository;
 import info.rateme.rateme.data.ReviewRepository;
+import info.rateme.rateme.data.UserRepository;
 import info.rateme.rateme.models.Movie;
 import info.rateme.rateme.models.Review;
+import info.rateme.rateme.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/review")
@@ -19,14 +23,16 @@ public class ReviewController {
 
     private ReviewRepository reviewRepo;
     private MovieRepository movieRepo;
+    private UserRepository userRepo;
 
     @Autowired
-    public ReviewController(ReviewRepository reviewRepo, MovieRepository movieRepo){
+    public ReviewController(ReviewRepository reviewRepo, MovieRepository movieRepo, UserRepository userRepo){
+        this.userRepo = userRepo;
         this.reviewRepo = reviewRepo;
         this.movieRepo = movieRepo;
     }
 
-    @GetMapping("/add/{movie_id}")
+    @GetMapping("/add/{movie_id}{user_id}")
     public String sendAddReviewForm(@PathVariable Long movie_id, Model model) {
         model.addAttribute("review", new Review());
         Movie movie = movieRepo.findById(movie_id).get();
@@ -42,10 +48,15 @@ public class ReviewController {
     }
 
     @PostMapping("/add")
-    public String handleReviewForm(@Valid @ModelAttribute("review") Review review, Errors errors) {
+    public String handleReviewForm(@Valid @ModelAttribute("review") Review review, Errors errors, @AuthenticationPrincipal User user) {
         if(errors.hasErrors())
             return "add-review";
-        this.reviewRepo.save(review);
+        try {
+            review.setUser(user);
+            this.reviewRepo.save(review);
+        } catch (DataIntegrityViolationException e) {
+            return "add-review";
+        }
         return "redirect:/display-reviews";
     }
 

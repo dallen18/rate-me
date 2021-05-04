@@ -7,4 +7,3 @@ function updateEpisodes(category, episodesId) {
         document.getElementById(episodesId).removeAttribute('readonly');
     }
 }
-
