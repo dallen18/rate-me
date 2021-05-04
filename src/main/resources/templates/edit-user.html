@@ -1,78 +1,80 @@
 <!DOCTYPE html>
 <html lang="en"
-    xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <th:block th:insert="fragments/base :: headerFiles"></th:block>
     <title>Edit Movie</title>
 </head>
 <body>
-    <div th:replace="fragments/base :: navigation"></div>
-    <div th:replace="fragments/base :: header"></div>
+<div th:replace="fragments/base :: navigation"></div>
+<div th:replace="fragments/base :: header"></div>
 
-    <div class="container-fluid mt-3">
+<div class="container-fluid mt-3">
+    <div class="row justify-content-center">
+        <h3 id="edit" class="text-center col-12" sec:authorize="hasRole('ADMIN')">Change username or password</h3>
+        <h3 class="text-center col-12" sec:authorize="hasRole('USER')">Change username or password</h3>
+    </div>
+</div>
+
+<form class="mt-3 mb-3" th:action="@{/user/edit}" th:object="${user}" method="post">
+    <div class="container-fluid">
         <div class="row justify-content-center">
-            <h3 id="edit" class="text-center col-12" sec:authorize="hasRole('ADMIN')">Change username or password</h3>
-            <h3 class="text-center col-12" sec:authorize="hasRole('USER')">Change username or password</h3>
+            <div class="col-8 col-md-4">
+                <input class="form-control" id="username" type="text"
+                       placeholder="User Name" th:field="*{username}" required/>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-2">
+            <div class="col-8 col-md-4">
+                <span class="text-danger small" th:if="${errorMsg}"
+                      th:errors="*{username}"></span>
+            </div>
         </div>
     </div>
-
-    <form class="mt-3 mb-3" th:action="@{/user/edit}" th:object="${user}" method="post">
 
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-8 col-md-4">
-                    <input class="form-control" id="username" type="text"
-                           placeholder="User Name" th:field="*{username}" required/>
+                    <input class="form-control" id="password" type="password"
+                           placeholder="Password" th:field="*{password}" required/>
                 </div>
             </div>
-            <div class="row justify-content-center mb-2">
-                <div class="col-8 col-md-4">
-                <span class="text-danger small" th:if="${errorMsg}"
-                      th:errors="*{username}"></span>
-                </div>
-            </div>
+        </div>
 
-            <div class="container-fluid">
-                <div class="row justify-content-center">
-                    <div class="col-8 col-md-4">
-                        <input class="form-control" id="password" type="password"
-                               placeholder="Password" th:field="*{password}" required/>
-                    </div>
-                </div>
-            <div class="row justify-content-center mb-2">
-                <div class="col-8 col-md-4">
+        <div class="row justify-content-center mb-2">
+            <div class="col-8 col-md-4">
                 <span class="text-danger small" th:if="${errorMsg}"
                       th:errors="*{password}"></span>
-                </div>
             </div>
-                <div class="container-fluid">
-                    <div class="row justify-content-center">
-                        <div class="col-8 col-md-4">
-                            <input class="form-control" id="email" type="email" th:field="*{email}"
-                                   placeholder="Email"/>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center mb-2">
-                        <div class="col-8 col-md-4">
-                <span class="text-danger small" th:if="${errorMsg}"
-                      th:errors="*{email}"></span>
-                        </div>
-                    </div>
         </div>
 
-        <div class="container-fluid" sec:authorize="hasRole('USER')">
+        <div class="container-fluid">
             <div class="row justify-content-center">
-                <div>
-                   <a class="ml-2 btn btn-light btn-outline-dark" th:href="@{/display-movies}">Back to Movies</a>
-                    <input class="btn btn-light btn-outline-dark" type="submit" value="Submit"/>
+                <div class="col-8 col-md-4">
+                    <input class="form-control" id="email" type="email" th:field="*{email}"
+                           placeholder="Email"/>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-2">
+                <div class="col-8 col-md-4">
+                    <span class="text-danger small" th:if="${errorMsg}"
+                          th:errors="*{email}">
+                    </span>
                 </div>
             </div>
         </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div>
+                <a class="ml-2 btn btn-light btn-outline-dark" th:href="@{/display-movies}">Back to Movies</a>
+                <input class="btn btn-light btn-outline-dark" type="submit" value="Submit"/>
+            </div>
+        </div>
+    </div>
+</form>
 
-    </form>
-
-    <div th:replace="fragments/base :: footer"></div>
+<div th:replace="fragments/base :: footer"></div>
 </body>
 <th:block th:insert="fragments/base :: scripts"></th:block>
 </html>

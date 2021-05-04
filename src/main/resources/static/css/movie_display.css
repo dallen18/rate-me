@@ -29,7 +29,7 @@ input, select{
     text-align-last: center;
 }
 
-#border, #genre, #movieName, #episodes, #email, #password, #category, #firstname, #lastname, #username, .my_style1{
+#border, #genre, #movieName, #episodes, #email, #password, #category, #firstname, #lastname, #username, .my_theme{
     border-color: black;
     border-width: thin;
     background-color: wheat;

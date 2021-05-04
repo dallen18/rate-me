@@ -16,9 +16,7 @@
                 th:field="*{movie}" th:text="${m.movieName}">
             <option th:value="${m.getMovieName()}"></option>
         </select>
-        <!--<div class="row justify-content-center">
-            <h5 class="card-title" th:field="*{}" th:value="${movie.getMovieName()}" th:text="${m.movieName}"></h5>
-        </div>-->
+
         <div class="row justify-content-center">
             <div class="col-8 col-md-4">
                 <input class="form-control" id="rating" type="number" min="1" max="10"

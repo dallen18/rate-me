@@ -68,7 +68,7 @@ public class UpdateUserController {
                     errors.rejectValue("user", "invalidUser", "Invalid Email or Username");
                     return "edit-user";
                 }
-                return "redirect:/";
+                return "redirect:/display-movies";
             }
         }
 

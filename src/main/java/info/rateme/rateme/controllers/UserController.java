@@ -8,6 +8,7 @@ import info.rateme.rateme.models.Review;
 import info.rateme.rateme.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,17 +43,17 @@ public class UserController {
     }
 
     @PostMapping
-    public String handleUserForm(@Valid @ModelAttribute("user") User user, Errors errors, Model model) {
+    public String handleUserForm(@ModelAttribute("user") User user, Errors errors, Model model) {
         if(errors.hasErrors())
             return "add-user";
 
-        List<User> usersWithSameEmail = (List<User>) userRepo.findByEmail(user.getEmail());
-        if(usersWithSameEmail.size() >= 1) {
+        User userWithSameEmail = userRepo.findByEmail(user.getEmail());
+        if(userWithSameEmail != null) {
             model.addAttribute("errorMsg", "Email already in use");
             return "add-user";
         } else {
-            List<User> usersWithSameUsername = (List<User>) userRepo.findByUsername(user.getUsername());
-            if (usersWithSameUsername.size() >= 1) {
+            User userWithSameUsername = userRepo.findByUsername(user.getUsername());
+            if(userWithSameUsername != null) {
                 model.addAttribute("errorMsg", "Username already in use");
                 return "add-user";
             } else {
@@ -71,18 +72,8 @@ public class UserController {
         }
         return "login";
     }
-    /*@GetMapping("/add")
-    public String sendAddMovieForm(Model model) {
-        List<Review> reviews = (List<Review>) reviewRepo.findAll();
-        List<Movie> movies = (List<Movie>) movieRepo.findAll();
-        model.addAttribute("reviews", reviews);
-        model.addAttribute("movie", movies);
-        model.addAttribute("user", new User());
-        return "add-user";
-    }*/
 
-
-    @PostMapping("/edit-user/{id}")
+    /*@PostMapping("/edit-user/{id}")
     public String handleEditUserForm(@PathVariable Long id, @Valid @ModelAttribute("user") User user, Errors errors, Model model) {
         if(errors.hasErrors())
             return "edit-user";
@@ -113,7 +104,7 @@ public class UserController {
         this.userRepo.save(user);
         return "redirect:/login";
 
-    }
+    }*/
 
     private void updatedOriginalUser(User original, User update) {
         original.setUsername(update.getUsername());

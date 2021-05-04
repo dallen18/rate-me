@@ -34,18 +34,16 @@
                 </div>
             </div>
         </div>
-
-        <div class="container-fluid" sec:authorize="hasRole('USER')">
-            <div class="row justify-content-center">
-                <div>
-                   <a class="ml-2 btn btn-light btn-outline-dark" th:href="@{/display-movies}">Back to Movies</a>
-                    <a class="ml-2 btn btn-light btn-outline-dark" th:href="@{/user/edit}">Edit details</a>
-                </div>
-            </div>
-        </div>
-
     </form>
 
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div>
+                <a class="ml-2 btn btn-light btn-outline-dark" th:href="@{/display-movies}">Back to Movies</a>
+                <a class="ml-2 btn btn-light btn-outline-dark" th:href="@{/user/edit}">Edit details</a>
+            </div>
+        </div>
+    </div>
     <div th:replace="fragments/base :: footer"></div>
 </body>
 <th:block th:insert="fragments/base :: scripts"></th:block>
