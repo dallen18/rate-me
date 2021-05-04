@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/movie/**", "/review/**","/display-movies/**","/display-reviews/**", "/user/**").hasAnyRole("ADMIN", "USER")
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/display-movies",true).permitAll()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/",true).permitAll()
                 .usernameParameter("email")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

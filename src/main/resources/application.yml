@@ -13,3 +13,9 @@ spring:
     password: ${PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
     platform: mysql
+
+
+server:
+  error:
+    whitelabel:
+      enabled: false

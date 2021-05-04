@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <th:block th:insert="fragments/base :: headerFiles"></th:block>
     <title>Home</title>
@@ -11,7 +12,16 @@
     <br><br>
 
     <div class="container-fluid">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mb-3" sec:authorize="isAuthenticated()">
+            <div class="col-8 col-md-3 text-center">
+                <h4 class="edit" th:text="'Hello ' + ${user.userFirstname} + ' ' + ${user.userLastname} + ', I hope you enjoy the Rate Me experience!!!'"></h4>
+            </div>
+        </div>
+        <div class="row justify-content-center" sec:authorize="isAuthenticated()">
+            <a class="ml-2 btn btn-light btn-outline-dark" th:href="@{/display-movies}">Check out Movies</a>
+        </div>
+
+        <div class="row justify-content-center" sec:authorize="isAnonymous()">
             <div class="col-8 col-md-3 text-center">
                 <a th:href="@{/login}" class="btn btn-light btn-outline-dark">Login</a>
             </div>

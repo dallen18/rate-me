@@ -46,6 +46,8 @@ input, select{
     color: coral;
 }
 #rateme{
+    -webkit-text-stroke: .3px black;
+    -webkit-text-fill-color: coral;
     letter-spacing: 2px;
     font-size: 75px;
     color:coral;

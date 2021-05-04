@@ -79,7 +79,6 @@ public class ReviewController {
             errors.rejectValue("review", "invalidReview", "Review already made");
             return "view-review";
         }
-
         return "redirect:/view";
     }
 

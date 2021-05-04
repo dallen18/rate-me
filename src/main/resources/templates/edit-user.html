@@ -12,8 +12,8 @@
 
 <div class="container-fluid mt-3">
     <div class="row justify-content-center">
-        <h3 class=" edit text-center col-12" sec:authorize="hasRole('ADMIN')">Change username or password</h3>
-        <h3 class=" edit text-center col-12" id="edit" sec:authorize="hasRole('USER')">Change username or password</h3>
+        <h3 class=" edit text-center col-12" sec:authorize="hasRole('ADMIN')">Change username / password / email</h3>
+        <h3 class=" edit text-center col-12" id="edit" sec:authorize="hasRole('USER')">Change username / password / email</h3>
     </div>
 </div>
 
@@ -27,7 +27,7 @@
         </div>
         <div class="row justify-content-center mb-2">
             <div class="col-8 col-md-4">
-                <span class="text-danger small" th:if="${errorMsg}"
+                <span class="text-danger small" th:if="${#fields.hasErrors('username')}"
                       th:errors="*{username}"></span>
             </div>
         </div>
@@ -44,7 +44,7 @@
 
         <div class="row justify-content-center mb-2">
             <div class="col-8 col-md-4">
-                <span class="text-danger small" th:if="${errorMsg}"
+                <span class="text-danger small" th:if="${#fields.hasErrors('password')}"
                       th:errors="*{password}"></span>
             </div>
         </div>
@@ -58,7 +58,7 @@
             </div>
             <div class="row justify-content-center mb-2">
                 <div class="col-8 col-md-4">
-                    <span class="text-danger small" th:if="${errorMsg}"
+                    <span class="text-danger small" th:if="${#fields.hasErrors('email')}"
                           th:errors="*{email}">
                     </span>
                 </div>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="fragments/base :: headerFiles"></th:block>
+    <title>Error</title>
+</head>
+<body>
+    <div th:replace="fragments/base :: navigation"></div>
+    <div th:replace="fragments/base :: header"></div>
+
+    <br><br>
+    <div class="row justify-content-center">
+        <div class="col-8 mb-3 text-center text-dark">
+            <h2 class="errors" th:text="${message}">Sorry, We probably shouldn't be here. </h2>
+        </div>
+    </div>
+
+    <div th:replace="fragments/base :: footer"></div>
+</body>
+<th:block th:insert="fragments/base :: scripts"></th:block>
+</html>

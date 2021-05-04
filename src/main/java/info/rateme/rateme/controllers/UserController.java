@@ -73,39 +73,6 @@ public class UserController {
         return "login";
     }
 
-    /*@PostMapping("/edit-user/{id}")
-    public String handleEditUserForm(@PathVariable Long id, @Valid @ModelAttribute("user") User user, Errors errors, Model model) {
-        if(errors.hasErrors())
-            return "edit-user";
-
-        List<User> users = (List<User>) userRepo.findByEmail(user.getEmail());
-        boolean matchfound = users.stream().anyMatch(u -> users.equals(user.getEmail()));
-        if(matchfound) {
-            model.addAttribute("errorMsg", "Email already in use");
-            return "edit-user";
-        }
-
-        List<User> username = (List<User>) userRepo.findByUsername(user.getUsername());
-        boolean matchfounds = username.stream().anyMatch(u -> username.equals(user.getUsername()));
-        if(matchfounds) {
-            model.addAttribute("errorMsg", "Username already in use");
-            return "edit-user";
-        }
-
-        try {
-            User originalUser = this.userRepo.findById(id).get();
-            updatedOriginalUser(originalUser, user);
-            this.userRepo.save(user);
-        } catch (DataIntegrityViolationException e){
-            errors.rejectValue("user", "invalidUser", "Invalid Email");
-            return "edit-user";
-        }
-
-        this.userRepo.save(user);
-        return "redirect:/login";
-
-    }*/
-
     private void updatedOriginalUser(User original, User update) {
         original.setUsername(update.getUsername());
         original.setPassword(update.getPassword());
